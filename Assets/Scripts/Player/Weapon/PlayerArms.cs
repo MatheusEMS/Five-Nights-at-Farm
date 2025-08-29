@@ -34,6 +34,30 @@ public class PlayerArms : MonoBehaviour
         projectObj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0.1f, 0.1f, 0.1f), ForceMode.Impulse);
     }
 
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity,mask))
+        {
+            Debug.DrawRay(posTiro.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+
+            lineRenderer.material.color = Color.red;
+            lineRenderer.SetPosition(0, posTiro.transform.position);
+            lineRenderer.SetPosition(1, posTiro.transform.position + transform.TransformDirection(Vector3.forward) * hit.distance);
+            mira.color = Color.red;
+        }
+        else
+        {
+            Debug.DrawRay(posTiro.transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+
+            lineRenderer.material.color = Color.white;
+            lineRenderer.SetPosition(0, posTiro.transform.position);
+            lineRenderer.SetPosition(1, posTiro.transform.position + transform.TransformDirection(Vector3.forward) * 1000);
+            mira.color = Color.white;
+        }
+    }
+
 
     //animacoes
     private bool aiming, jumping, reloading;
@@ -50,28 +74,6 @@ public class PlayerArms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Laser
-        RaycastHit hitLaser;
-
-        if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hitLaser, Mathf.Infinity,mask))
-        {
-            //Debug.DrawRay(posTiro.transform.position, transform.TransformDirection(Vector3.forward) * hitLaser.distance, Color.red);
-
-            lineRenderer.material.color = Color.red;
-            lineRenderer.SetPosition(0, posTiro.transform.position);
-            lineRenderer.SetPosition(1, posTiro.transform.position + transform.TransformDirection(Vector3.forward) * hitLaser.distance);
-            mira.color = Color.red;
-        }
-        else
-        {
-           //Debug.DrawRay(posTiro.transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-
-            lineRenderer.material.color = Color.white;
-            lineRenderer.SetPosition(0, posTiro.transform.position);
-            lineRenderer.SetPosition(1, posTiro.transform.position + transform.TransformDirection(Vector3.forward) * 1000);
-            mira.color = Color.white;
-        }
-        //####
         
 
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
