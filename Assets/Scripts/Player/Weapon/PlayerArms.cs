@@ -26,7 +26,6 @@ public class PlayerArms : MonoBehaviour
 
     [SerializeField] private Image mira;
     public LayerMask mask;
-    private LineRenderer lineRenderer;
     
     public void Eject(GameObject prefab)
     {
@@ -41,39 +40,12 @@ public class PlayerArms : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        lineRenderer = gameObject.GetComponent<LineRenderer>();
-        lineRenderer.startWidth = 0.01f;
-        lineRenderer.endWidth = 0.01f;
-        lineRenderer.material = new Material(Shader.Find("Unlit/Color")) { color = Color.red };
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Laser
-        RaycastHit hitLaser;
-
-        if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hitLaser, Mathf.Infinity,mask))
-        {
-            //Debug.DrawRay(posTiro.transform.position, transform.TransformDirection(Vector3.forward) * hitLaser.distance, Color.red);
-
-            lineRenderer.material.color = Color.red;
-            lineRenderer.SetPosition(0, posTiro.transform.position);
-            lineRenderer.SetPosition(1, posTiro.transform.position + transform.TransformDirection(Vector3.forward) * hitLaser.distance);
-            mira.color = Color.red;
-        }
-        else
-        {
-           //Debug.DrawRay(posTiro.transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-
-            lineRenderer.material.color = Color.white;
-            lineRenderer.SetPosition(0, posTiro.transform.position);
-            lineRenderer.SetPosition(1, posTiro.transform.position + transform.TransformDirection(Vector3.forward) * 1000);
-            mira.color = Color.white;
-        }
-        //####
-        
-
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             //acceleration = 4;
@@ -99,7 +71,7 @@ public class PlayerArms : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+            if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
             {
                 //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
                 //Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);

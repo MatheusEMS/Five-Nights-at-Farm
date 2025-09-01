@@ -4,6 +4,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     public float playerReach = 3f;
     Interactable currentInteractable;
+    public Transform point;
 
     // Update is called once per frame
     void Update()
@@ -13,25 +14,31 @@ public class PlayerInteraction : MonoBehaviour
         {
             currentInteractable.Interact();
         }
+        //Debug.Log(currentInteractable);
     }
 
     void CheckInteraction()
     {
         RaycastHit hit;
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray ray = new Ray(point.transform.position, point.transform.forward);
 
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward);
+        Debug.DrawRay(point.transform.position, point.transform.forward);
         //if colliders with anything within player reach
         if (Physics.Raycast(ray, out hit, playerReach))
         {
+            
             if (hit.collider.tag == "Interactable")
             {
                 Interactable newInteractable = hit.collider.GetComponent<Interactable>();
 
+                //if (currentInteractable == newInteractable)
+                //{
+                    //return;
+                //}
                 //if there is a currentInteractable and it is not the newInteractable
                 if (currentInteractable && newInteractable != currentInteractable)
                 {
-                    currentInteractable.DisableOutline();
+                    //currentInteractable.DisableOutline();
                 }
                 if (newInteractable.enabled)
                 {
@@ -56,8 +63,9 @@ public class PlayerInteraction : MonoBehaviour
     void SetNewCurrentInteractable(Interactable newInteractable)
     {
         currentInteractable = newInteractable;
-        currentInteractable.EnableOutline();
+        //currentInteractable.EnableOutline();
         HudController.instance.EnableInteractionText(currentInteractable.message);
+
     }
 
     void DisableCurrentInteractable()
@@ -65,7 +73,7 @@ public class PlayerInteraction : MonoBehaviour
         HudController.instance.DisableInteractionText();
         if (currentInteractable)
         {
-            currentInteractable.DisableOutline();
+            //currentInteractable.DisableOutline();
             currentInteractable = null;
         }      
     }

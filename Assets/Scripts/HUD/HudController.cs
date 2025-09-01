@@ -10,16 +10,21 @@ public class HudController : MonoBehaviour
         instance = this;
     }
 
+    void Start()
+    {
+        DisableInteractionText();
+    }
+
     [SerializeField] TMP_Text interactionText;
 
     public void EnableInteractionText(string text)
     {
         interactionText.text = text + " (E)";
-        interactionText.gameObject.SetActive(true);
+        interactionText.enabled = true;
     }
 
     public void DisableInteractionText()
     {
-        interactionText.gameObject.SetActive(false);
+        interactionText.enabled = false;
     }
 }
