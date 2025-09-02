@@ -27,6 +27,8 @@ public class FPcontroller : MonoBehaviour
 
     [SerializeField] float currentPitch = 0f;
 
+
+
     public float CurrentPitch
     {
         get => currentPitch;
@@ -89,4 +91,6 @@ public class FPcontroller : MonoBehaviour
         //looking left and right
         transform.Rotate(Vector3.up * input.x);
     }
+
+
 }
