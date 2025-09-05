@@ -38,7 +38,7 @@ public class PlayerInteraction : MonoBehaviour
                 //if there is a currentInteractable and it is not the newInteractable
                 if (currentInteractable && newInteractable != currentInteractable)
                 {
-                    //currentInteractable.DisableOutline();
+                    currentInteractable.DisableOutline();
                 }
                 if (newInteractable.enabled)
                 {
@@ -63,7 +63,7 @@ public class PlayerInteraction : MonoBehaviour
     void SetNewCurrentInteractable(Interactable newInteractable)
     {
         currentInteractable = newInteractable;
-        //currentInteractable.EnableOutline();
+        currentInteractable.EnableOutline();
         HudController.instance.EnableInteractionText(currentInteractable.message);
 
     }
@@ -73,7 +73,7 @@ public class PlayerInteraction : MonoBehaviour
         HudController.instance.DisableInteractionText();
         if (currentInteractable)
         {
-            //currentInteractable.DisableOutline();
+            currentInteractable.DisableOutline();
             currentInteractable = null;
         }      
     }
