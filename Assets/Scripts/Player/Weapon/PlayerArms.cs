@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerArms : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class PlayerArms : MonoBehaviour
 
     [SerializeField] private Image mira;
     public LayerMask mask;
-    
+    [SerializeField] bool CanFire = true;
+
     public void Eject(GameObject prefab)
     {
         var projectObj = Instantiate(prefab, posEject.position, Quaternion.identity);
@@ -67,7 +69,25 @@ public class PlayerArms : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Shoot();
+            if (CanFire == true)
+            {
+                if (GlobalAmmo.municaopistolacount > 1)
+                {
+                    GlobalAmmo.municaopistolacount -= 1;
+                    Shoot();
+                    CanFire = false;
+                    StartCoroutine(AtirandoPistola());
+                  }else{
+
+                    GlobalAmmo.municaopistolacount -= 1;
+                    CanFire = false;
+                    StartCoroutine(Recarregar());
+
+                }
+
+                } 
+
+
 
             RaycastHit hit;
 
@@ -127,4 +147,21 @@ public class PlayerArms : MonoBehaviour
         vfxSangue.transform.position = pos;
         vfxSangue.SendEvent("TiroSangue");
     }
+    
+    IEnumerator AtirandoPistola()
+    {
+        yield return new WaitForSeconds(0.8f);
+        CanFire = true; 
+
+
+    }
+    IEnumerator Recarregar()
+    {
+
+        yield return new WaitForSeconds(1.8f);
+
+        CanFire = true;
+        GlobalAmmo.municaopistolacount = 8;
+    }
+
 }
