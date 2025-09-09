@@ -1,35 +1,132 @@
+using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class IngredientsController : MonoBehaviour
 {
-    public Transform spawnPointFruta, spawnPointFruta2;
+    public Transform spawnPointFruta, spawnPointFruta2, spawnReceita;
     private Transform spawnUsado;
     //[SerializeField]
     //private GameObject prefabFruta1,prefabFruta2;
     [SerializeField] private GameObject arma;
-    private List<string> receita;
+    [SerializeField] private float tempoCozinhar = 10f;
+    private float countDown;
+
+    private List<int> receita;
+    private List<int> receitasProntas; //Receitas que podem ser feitas
+
+    [SerializeField] private List<GameObject> ReceitasParaSpawnar; //0 receita estragada , 1 receita1 , 2 receita2
+
+    private enum estadosPanela
+    {
+        vazia,
+        disponivel,
+        cheia,
+        cozinhando
+    };
+    estadosPanela estadoAtualPanela = estadosPanela.vazia;
+    private int qualReceita = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        receita = new List<string>();
+        receita = new List<int>()
+        {
+            0, //quant de fruta 1 na panela
+            0 //quant de fruta 2 na panela
+        };
+
+
+        //Colocar aqui as receitas que podem ser criadas
+        receitasProntas = new List<int>()
+        {
+            2, //RECEITA 1 - FRUTA 1
+            1, //RECEITA 1 - FRUTA 2
+            3, //RECEITA 2 - FRUTA 1
+            0  //RECEITA 2 - FRUTA 2
+        };
+        countDown = tempoCozinhar;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (estadoAtualPanela == estadosPanela.cozinhando)
+        {
+            countDown -= Time.deltaTime;
+            if (countDown <= 0)
+            {
+                Instantiate(ReceitasParaSpawnar[qualReceita], new Vector3(spawnReceita.transform.position.x,
+                spawnReceita.transform.position.y,
+                spawnReceita.transform.position.z), Quaternion.identity);
 
+                countDown = tempoCozinhar;
+                estadoAtualPanela = estadosPanela.vazia;
+                qualReceita = 0;
+            }
+        }
     }
 
-    public void cozinhar()
+    //Debug na tela
+    void OnGUI()
     {
-        if (GameObject.FindWithTag("segurando") != null)
-        {
-            if (receita.Count < 3) //tamanho max de ingerdientes
-            {
-                receita.Add(GameObject.FindWithTag("segurando").name);
+        GUILayout.BeginArea(new Rect(Screen.width - 400, 0, 400, Screen.height));
+        GUILayout.Label("\n" + string.Join("\n", estadoAtualPanela , countDown, qualReceita));
+        GUILayout.EndArea();
+    }
 
+    public void LigarPanela()
+    {
+        if (estadoAtualPanela == estadosPanela.disponivel || estadoAtualPanela == estadosPanela.cheia) // ver se vai ser assim
+        {
+            print("Ligou a panela " + receitasProntas.Count);
+
+            for(var i = 0;i < receitasProntas.Count - 1;i += 2)
+            {
+                qualReceita++;
+                if (receita[0] == receitasProntas[i] && receita[1] == receitasProntas[i+1])
+                {
+                    estadoAtualPanela = estadosPanela.cozinhando;
+                    print("cozinhado receita: " + qualReceita);
+                    return;
+                }
+            }
+
+            estadoAtualPanela = estadosPanela.cozinhando;
+            print("cozinhado, mas errou a receita");
+            qualReceita = 0;
+        }
+        else
+        {
+            print("Coloque ingredientes na panela (Panela vazia)");
+        }
+    }
+
+    public void colocandoIngredientesNaPanela()
+    {
+        if (GameObject.FindWithTag("segurando") != null && GameObject.FindWithTag("segurando").layer != 7) //ve se não é uma receita
+        {
+            if (estadoAtualPanela == estadosPanela.disponivel || estadoAtualPanela == estadosPanela.vazia) 
+            {
+                if (GameObject.FindWithTag("segurando").name == "Fruta1(Clone)")
+                {
+                    receita[0]++;
+                }
+                else if (GameObject.FindWithTag("segurando").name == "Fruta2(Clone)")
+                {
+                    receita[1]++;
+                }
+
+                estadoAtualPanela = estadosPanela.disponivel;
+
+                if (receita[0] + receita[1] == 3) // 3: tamanho max de ingredientes , ver se como é mlr dps
+                {
+                    estadoAtualPanela = estadosPanela.cheia;
+                }
+
+
+                //Debug
                 foreach (var x in receita)
                 {
                     Debug.Log("lista:" + x);
@@ -41,12 +138,12 @@ public class IngredientsController : MonoBehaviour
             }
             else
             {
-                print("Panela cheia");
+                print("Panela cheia ou cozinhando");
             }
         }
         else
         {
-            print("não tem ingredientes para colocar");
+            print("não tem ingredientes para colocar ou é uma receita");
         }
     }
 
