@@ -3,8 +3,11 @@ using UnityEngine.AI;
 public class NewAiMove : MonoBehaviour
 {
     public Transform playerTransform;
+    [SerializeField] public float maxTime = 1.0f;
+    [SerializeField] public float maxDistance = 1.0f;
     NavMeshAgent agent;
 
+    float timer = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,8 +19,15 @@ public class NewAiMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        agent.destination = playerTransform.position;
-
+        timer -= Time.deltaTime;
+        if (timer < 0.0f)
+        {
+            float sqDistance = (playerTransform.position - agent.destination).sqrMagnitude;
+            if (sqDistance > maxDistance)
+            {
+                agent.destination = playerTransform.position;
+            }
+            timer = maxTime;
+        }
     }
 }
