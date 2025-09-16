@@ -5,6 +5,7 @@ public class NewAiMove : MonoBehaviour
     public Transform playerTransform;
     [SerializeField] public float maxTime = 1.0f;
     [SerializeField] public float maxDistance = 1.0f;
+    public Transform IaTransform;
     NavMeshAgent agent;
 
     float timer = 0.0f;
@@ -29,5 +30,6 @@ public class NewAiMove : MonoBehaviour
             }
             timer = maxTime;
         }
+
     }
 }
