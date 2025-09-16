@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class IngredientsController : MonoBehaviour
 {
-    public Transform spawnPointFruta, spawnPointFruta2, spawnReceita;
+    public Transform spawnPointIngrediente, spawnPointIngrediente2, spawnReceita;
     private Transform spawnUsado;
     //[SerializeField]
-    //private GameObject prefabFruta1,prefabFruta2;
+    //private GameObject prefabIngrediente1,prefabIngrediente2;
     [SerializeField] private GameObject arma;
     [SerializeField] private float tempoCozinhar = 10f;
     private float countDown;
@@ -33,18 +33,18 @@ public class IngredientsController : MonoBehaviour
     {
         receita = new List<int>()
         {
-            0, //quant de fruta 1 na panela
-            0 //quant de fruta 2 na panela
+            0, //quant de Ingrediente 1 na panela
+            0 //quant de Ingrediente 2 na panela
         };
 
 
         //Colocar aqui as receitas que podem ser criadas
         receitasProntas = new List<int>()
         {
-            2, //RECEITA 1 - FRUTA 1
-            1, //RECEITA 1 - FRUTA 2
-            3, //RECEITA 2 - FRUTA 1
-            0  //RECEITA 2 - FRUTA 2
+            2, //RECEITA 1 - Ingrediente 1
+            1, //RECEITA 1 - Ingrediente 2
+            3, //RECEITA 2 - Ingrediente 1
+            0  //RECEITA 2 - Ingrediente 2
         };
         countDown = tempoCozinhar;
     }
@@ -109,11 +109,11 @@ public class IngredientsController : MonoBehaviour
         {
             if (estadoAtualPanela == estadosPanela.disponivel || estadoAtualPanela == estadosPanela.vazia) 
             {
-                if (GameObject.FindWithTag("segurando").name == "Fruta1(Clone)")
+                if (GameObject.FindWithTag("segurando").name == "Ingrediente1(Clone)")
                 {
                     receita[0]++;
                 }
-                else if (GameObject.FindWithTag("segurando").name == "Fruta2(Clone)")
+                else if (GameObject.FindWithTag("segurando").name == "Ingrediente2(Clone)")
                 {
                     receita[1]++;
                 }
@@ -147,7 +147,7 @@ public class IngredientsController : MonoBehaviour
         }
     }
 
-    public void PegouFruta(GameObject ingrediente)
+    public void PegouIngrediente(GameObject ingrediente)
     {
         if (GameObject.FindWithTag("segurando") == null)
         {
@@ -167,7 +167,7 @@ public class IngredientsController : MonoBehaviour
 
     }
 
-    public void SpawnaFruta(GameObject ingrediente)
+    public void SpawnaIngrediente(GameObject ingrediente)
     {
         if (GameObject.Find(ingrediente.name + "(Clone)"))
         {
@@ -177,13 +177,13 @@ public class IngredientsController : MonoBehaviour
         {
             Debug.Log("Doesn't exist");
 
-            if (ingrediente.name == "Fruta1")
+            if (ingrediente.name == "Ingrediente1")
             {
-                spawnUsado = spawnPointFruta;
+                spawnUsado = spawnPointIngrediente;
             }
             else
             {
-                spawnUsado = spawnPointFruta2;
+                spawnUsado = spawnPointIngrediente2;
             }
 
             Instantiate(ingrediente, new Vector3(spawnUsado.transform.position.x,
@@ -202,7 +202,7 @@ public class IngredientsController : MonoBehaviour
         }
         else
         {
-            Debug.Log("não está segurando fruta");
+            Debug.Log("não está segurando Ingrediente");
         }
     }
 }

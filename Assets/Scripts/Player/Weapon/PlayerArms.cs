@@ -25,7 +25,7 @@ public class PlayerArms : MonoBehaviour
     [SerializeField] private VisualEffect vfxFumaca;
     [SerializeField] private VisualEffect vfxSangue;
 
-    [SerializeField] private Image mira;
+    //[SerializeField] private Image mira;
     public LayerMask mask;
     [SerializeField] bool CanFire = true;
 
