@@ -16,11 +16,11 @@ public class ClientesController : MonoBehaviour
     {
         if (GameObject.Find("Cliente(Clone)"))
         { 
-            Debug.Log("achou cliente");
+            //Debug.Log("achou cliente");
         }else
         {
             Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
-            Debug.Log("não tem cliente");
+            //Debug.Log("nï¿½o tem cliente");
         }
     }
 }

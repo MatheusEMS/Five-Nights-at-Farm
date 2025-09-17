@@ -27,7 +27,7 @@ public class ClientesBehavior : MonoBehaviour
     void Start()
     {
         tempoEspera = Random.Range(30f, 50f);
-        ReceitaPedida = Random.Range(1,2);
+        ReceitaPedida = Random.Range(1,3);
     }
 
     // Update is called once per frame
@@ -51,7 +51,7 @@ public class ClientesBehavior : MonoBehaviour
                 if(tempoEspera <= 0)
                 {
                     estadoCliente = EstadosCliente.SaindoInsastifeito;
-                    Debug.Log("Perdeu reputação");
+                    Debug.Log("Perdeu reputaï¿½ï¿½o");
                 }
                 break;
             case EstadosCliente.SaindoSatisfeito:
@@ -84,7 +84,7 @@ public class ClientesBehavior : MonoBehaviour
 
     public void EntregandoReceita()
     {
-        if (GameObject.FindWithTag("segurando") != null && GameObject.FindWithTag("segurando").layer == 7) //ve se é uma receita
+        if (GameObject.FindWithTag("segurando") != null && GameObject.FindWithTag("segurando").layer == 7) //ve se ï¿½ uma receita
         {
             Debug.Log(GameObject.FindWithTag("segurando"));
 
@@ -97,8 +97,9 @@ public class ClientesBehavior : MonoBehaviour
                     {
                         estadoCliente = EstadosCliente.SaindoInsastifeito;
                         Destroy(GameObject.FindWithTag("segurando"));
-                        GameObject.Find("Weapon").SetActive(true);
-                        Debug.Log("Perdeu reputação");
+                        //GameObject.FindWithTag("arma").SetActive(true); // m funcioa pois a arma estÃ¡ dividida
+
+                        Debug.Log("Perdeu reputaï¿½ï¿½o");
 
                         return;
                     }
@@ -108,9 +109,8 @@ public class ClientesBehavior : MonoBehaviour
                         {
                             estadoCliente = EstadosCliente.SaindoSatisfeito;
                             Destroy(GameObject.FindWithTag("segurando"));
-                            GameObject.Find("Weapon").SetActive(true);
-
-                            Debug.Log("Ganhou reputação");
+                            //GameObject.FindWithTag("arma").SetActive(true);     
+                            Debug.Log("Ganhou reputaï¿½ï¿½o");
                             return;
                         }
 
@@ -120,9 +120,7 @@ public class ClientesBehavior : MonoBehaviour
 
             estadoCliente = EstadosCliente.SaindoInsastifeito;
             Destroy(GameObject.FindWithTag("segurando"));
-            Debug.Log("Perdeu reputação");
-
-            GameObject.Find("Weapon").SetActive(true);
+            Debug.Log("Perdeu reputaï¿½ï¿½o");
         }
     }
 
@@ -130,7 +128,7 @@ public class ClientesBehavior : MonoBehaviour
     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(Screen.width - 600, 0, 400, Screen.height));
-        GUILayout.Label("\n" + string.Join("\n", estadoCliente,ReceitaPedida,tempoEspera));
+        GUILayout.Label("\n" + string.Join("\n", estadoCliente,"receita pedida " + ReceitaPedida,"tempo espera " + tempoEspera));
         GUILayout.EndArea();
     }
 }
