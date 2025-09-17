@@ -52,7 +52,7 @@ public class IngredientsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (estadoAtualPanela == estadosPanela.cozinhando)
+        if (GameController.instance.pausa == false && estadoAtualPanela == estadosPanela.cozinhando)
         {
             countDown -= Time.deltaTime;
             if (countDown <= 0)
@@ -76,7 +76,7 @@ public class IngredientsController : MonoBehaviour
     //Debug na tela
     void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(Screen.width - 400, 0, 400, Screen.height));
+        GUILayout.BeginArea(new Rect(Screen.width - 300, 0, 400, Screen.height));
         GUILayout.Label("\n" + string.Join("\n", estadoAtualPanela , countDown, "qual receita " +qualReceita,receita[0].ToString(),receita[1].ToString()));
         GUILayout.EndArea();
     }
@@ -134,7 +134,7 @@ public class IngredientsController : MonoBehaviour
                 //Debug
                 foreach (var x in receita)
                 {
-                    Debug.Log("lista:" + x);
+                    Debug.Log("lista: " + x);
                 }
 
                 print("tamanho lista receita:" + receita.Count);
