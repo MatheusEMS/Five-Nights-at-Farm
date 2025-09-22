@@ -42,7 +42,7 @@ public class IadoSarue : MonoBehaviour
             if (sqDistance > maxDistance)
             {
                 agent.destination = fugapoint.position;
-                timer = 100f;
+                
             }
             
         }
@@ -62,8 +62,14 @@ public class IadoSarue : MonoBehaviour
 
 
         }
+          else if(other.CompareTag("fugapoint"))
+          {
+            Destroy(gameObject);
+           // fuga = false;
 
+          }
 
+      
 
 
     }

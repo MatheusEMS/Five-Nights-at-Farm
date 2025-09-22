@@ -8,6 +8,8 @@ TagManager:
   - Interactable
   - segurando
   - entregar
+  - Comida
+  - fugapoint
   layers:
   - Default
   - TransparentFX
