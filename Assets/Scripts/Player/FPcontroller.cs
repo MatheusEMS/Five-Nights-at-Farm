@@ -50,8 +50,11 @@ public class FPcontroller : MonoBehaviour
 
     void Update()
     {
-        MoveUpdate();
-        LookUpdate();
+        if (GameController.instance.pausa == false)
+        {
+            MoveUpdate();
+            LookUpdate();
+        }
     }
 
     void MoveUpdate()

@@ -52,11 +52,12 @@ public class IngredientsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (estadoAtualPanela == estadosPanela.cozinhando)
+        if (GameController.instance.pausa == false && estadoAtualPanela == estadosPanela.cozinhando)
         {
             countDown -= Time.deltaTime;
             if (countDown <= 0)
             {
+                //dar nome e ve se existe para não spawnar varias receitas
                 Instantiate(ReceitasParaSpawnar[qualReceita], new Vector3(spawnReceita.transform.position.x,
                 spawnReceita.transform.position.y,
                 spawnReceita.transform.position.z), Quaternion.identity);
@@ -64,6 +65,10 @@ public class IngredientsController : MonoBehaviour
                 countDown = tempoCozinhar;
                 estadoAtualPanela = estadosPanela.vazia;
                 qualReceita = 0;
+
+                //resetando a panela
+                receita[0] = 0;
+                receita[1] = 0;
             }
         }
     }
@@ -71,8 +76,8 @@ public class IngredientsController : MonoBehaviour
     //Debug na tela
     void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(Screen.width - 400, 0, 400, Screen.height));
-        GUILayout.Label("\n" + string.Join("\n", estadoAtualPanela , countDown, qualReceita));
+        GUILayout.BeginArea(new Rect(Screen.width - 300, 0, 400, Screen.height));
+        GUILayout.Label("\n" + string.Join("\n", estadoAtualPanela , countDown, "qual receita " +qualReceita,receita[0].ToString(),receita[1].ToString()));
         GUILayout.EndArea();
     }
 
@@ -129,7 +134,7 @@ public class IngredientsController : MonoBehaviour
                 //Debug
                 foreach (var x in receita)
                 {
-                    Debug.Log("lista:" + x);
+                    Debug.Log("lista: " + x);
                 }
 
                 print("tamanho lista receita:" + receita.Count);
@@ -155,6 +160,7 @@ public class IngredientsController : MonoBehaviour
             arma.SetActive(false);
 
             print(ingrediente);
+            
 
             ingrediente.transform.position = GameObject.Find("SeguraItem").transform.position;
             ingrediente.transform.SetParent(GameObject.Find("SeguraItem").transform);

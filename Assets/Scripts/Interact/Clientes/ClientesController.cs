@@ -14,13 +14,17 @@ public class ClientesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Cliente(Clone)"))
-        { 
-            Debug.Log("achou cliente");
-        }else
+        if (GameController.instance.pausa == false)
         {
-            Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
-            Debug.Log("não tem cliente");
+            if (GameObject.Find("Cliente(Clone)"))
+            {
+                //Debug.Log("achou cliente");
+            }
+            else
+            {
+                Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
+                //Debug.Log("nï¿½o tem cliente");
+            }
         }
     }
 }

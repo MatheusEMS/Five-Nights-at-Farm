@@ -27,15 +27,17 @@ public class ClientesBehavior : MonoBehaviour
     void Start()
     {
         tempoEspera = Random.Range(30f, 50f);
-        ReceitaPedida = Random.Range(1,2);
+        ReceitaPedida = Random.Range(1,3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (estadoCliente)
+        if (GameController.instance.pausa == false)
         {
-            case EstadosCliente.Chegando:
+            switch (estadoCliente)
+            {
+                case EstadosCliente.Chegando:
                     if (transform.position == new Vector3(5.87f, 2f, 3.44f))
                     {
                         estadoCliente = EstadosCliente.Esperando;
@@ -45,60 +47,64 @@ public class ClientesBehavior : MonoBehaviour
                         step = speed * Time.deltaTime;
                         transform.position = Vector3.MoveTowards(transform.position, new Vector3(5.87f, 2f, 3.44f), step);
                     }
-                break;
-            case EstadosCliente.Esperando:
-                tempoEspera -= Time.deltaTime;
-                if(tempoEspera <= 0)
-                {
-                    estadoCliente = EstadosCliente.SaindoInsastifeito;
-                    Debug.Log("Perdeu reputação");
-                }
-                break;
-            case EstadosCliente.SaindoSatisfeito:
-                if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
-                {
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    step = speed * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.09f, 2f, 12.47f), step);
-                }
-                break;
-            case EstadosCliente.SaindoInsastifeito:
-                if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
-                {
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    step = speed * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.09f, 2f, 12.47f), step);
-                }
-                break;
-            default:
-                // Code to execute if no other case matches
-                break;
+                    break;
+                case EstadosCliente.Esperando:
+                    tempoEspera -= Time.deltaTime;
+                    if (tempoEspera <= 0)
+                    {
+                        estadoCliente = EstadosCliente.SaindoInsastifeito;
+                        Debug.Log("Perdeu reputaï¿½ï¿½o");
+                    }
+                    break;
+                case EstadosCliente.SaindoSatisfeito:
+                    if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
+                    {
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        step = speed * Time.deltaTime;
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.09f, 2f, 12.47f), step);
+                    }
+                    break;
+                case EstadosCliente.SaindoInsastifeito:
+                    if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
+                    {
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        step = speed * Time.deltaTime;
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.09f, 2f, 12.47f), step);
+                    }
+                    break;
+                default:
+                    // Code to execute if no other case matches
+                    break;
+            }
         }
     }
 
     public void EntregandoReceita()
     {
-        if (GameObject.FindWithTag("segurando") != null && GameObject.FindWithTag("segurando").layer == 7) //ve se é uma receita
+        if (GameObject.FindWithTag("segurando") != null && GameObject.FindWithTag("segurando").layer == 7) //ve se ï¿½ uma receita
         {
             Debug.Log(GameObject.FindWithTag("segurando"));
 
             for (var i = 0; i < 3; i++) //i < o numero de receitas disponiveis
             {
                 Debug.Log("Entregando Receita" + i);
-                if (GameObject.FindWithTag("segurando").name == "Receita" + i+"(Clone)")
+                if (GameObject.FindWithTag("segurando").name == "Receita" + i + "(Clone)")
                 {
                     if (i == 0)
                     {
                         estadoCliente = EstadosCliente.SaindoInsastifeito;
+                        GameController.instance.clientesAtendidosInsatisfeitos++;
+
                         Destroy(GameObject.FindWithTag("segurando"));
-                        GameObject.Find("Weapon").SetActive(true);
-                        Debug.Log("Perdeu reputação");
+                        //GameObject.FindWithTag("arma").SetActive(true); // m funcioa pois a arma estÃ¡ dividida
+
+                        Debug.Log("Perdeu reputaï¿½ï¿½o");
 
                         return;
                     }
@@ -107,30 +113,30 @@ public class ClientesBehavior : MonoBehaviour
                         if (ReceitaPedida == i)
                         {
                             estadoCliente = EstadosCliente.SaindoSatisfeito;
-                            Destroy(GameObject.FindWithTag("segurando"));
-                            GameObject.Find("Weapon").SetActive(true);
+                            GameController.instance.clientesAtendidosSatisfeitos++;
 
-                            Debug.Log("Ganhou reputação");
+                            Destroy(GameObject.FindWithTag("segurando"));
+                            //GameObject.FindWithTag("arma").SetActive(true);     
+                            Debug.Log("Ganhou reputaï¿½ï¿½o");
                             return;
                         }
 
                     }
                 }
             }
-
+            // Acho q nÃ£o precisa dessas linhas, checar
             estadoCliente = EstadosCliente.SaindoInsastifeito;
+            GameController.instance.clientesAtendidosInsatisfeitos++;
             Destroy(GameObject.FindWithTag("segurando"));
-            Debug.Log("Perdeu reputação");
-
-            GameObject.Find("Weapon").SetActive(true);
+            Debug.Log("Perdeu reputaï¿½ï¿½o");
         }
     }
 
     //Debug na tela
     void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(Screen.width - 600, 0, 400, Screen.height));
-        GUILayout.Label("\n" + string.Join("\n", estadoCliente,ReceitaPedida,tempoEspera));
+        GUILayout.BeginArea(new Rect(Screen.width - 500, 0, 400, Screen.height));
+        GUILayout.Label("\n" + string.Join("\n", estadoCliente,"receita pedida " + ReceitaPedida,"tempo espera " + tempoEspera));
         GUILayout.EndArea();
     }
 }
