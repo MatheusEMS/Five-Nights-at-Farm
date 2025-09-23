@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class FPcontroller : MonoBehaviour
     [Header("Movement Parameters")]
     public float MaxSpeed = 3.5f;
     public float Acceleration = 15f;
-
+    public bool ataque_da_onca = false;
     public Vector3 CurrentVelocity { get; private set; }
     public float CurrentSpeed { get; private set; }
 
@@ -50,11 +51,23 @@ public class FPcontroller : MonoBehaviour
 
     void Update()
     {
+
+       
         if (GameController.instance.pausa == false)
         {
-            MoveUpdate();
+            if (ataque_da_onca == false)
+            {
+                MoveUpdate();
+            }
+            else
+            {
+                PlayerArms Player = GetComponent<PlayerArms>();
+                Player.ataque_da_onca = true;
+
+            }
             LookUpdate();
         }
+
     }
 
     void MoveUpdate()
@@ -94,6 +107,8 @@ public class FPcontroller : MonoBehaviour
         //looking left and right
         transform.Rotate(Vector3.up * input.x);
     }
+
+   
 
 
 }

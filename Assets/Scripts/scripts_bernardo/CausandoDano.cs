@@ -7,6 +7,7 @@ public class CausandoDano : MonoBehaviour
     [SerializeField] private float damage;
     //private float atkspd;
     [SerializeField] private float atktime;
+    [SerializeField] private string especie;
    // private bool atk = true;
     [SerializeField] private Collider colliderdmg;
     
@@ -18,19 +19,30 @@ public class CausandoDano : MonoBehaviour
 
 
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && especie == "cobra")
         {
            
+
+            SistemadeVida Player = other.GetComponent<SistemadeVida>();
+            Player.TakeDamage2(damage);
+            StartCoroutine(TimetoAtk());
+            colliderdmg.enabled = false;
+
+        }
+        else if (other.CompareTag("Player") && especie == "onca")
+        {
             SistemadeVida Player = other.GetComponent<SistemadeVida>();
             Player.TakeDamage(damage);
+            StartCoroutine(TimetoAtk());
+            colliderdmg.enabled = false;
 
 
         }
 
 
         // new WaitForSeconds(2);
-        StartCoroutine(TimetoAtk());
-        colliderdmg.enabled = false;
+       // StartCoroutine(TimetoAtk());
+       // colliderdmg.enabled = false;
 
 
     }
@@ -54,7 +66,7 @@ public class CausandoDano : MonoBehaviour
    IEnumerator TimetoAtk()
     {
 
-       yield return new WaitForSeconds(3);
+       yield return new WaitForSeconds(atktime);
         colliderdmg.enabled = true;
 
 

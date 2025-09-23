@@ -8,7 +8,7 @@ public class PlayerArms : MonoBehaviour
     //video : codigo de movimento de camera 3
 
     [SerializeField] Animator animBracos;
-
+    public bool ataque_da_onca = false;
     //float para ter uma interpolação entre anim
     private float curSpeed;
     private int targetSpeed;
@@ -44,10 +44,23 @@ public class PlayerArms : MonoBehaviour
     {
 
     }
+    IEnumerator Efeito_Ataque_Onca()
+    {
 
+        yield return new WaitForSeconds(2);
+        ataque_da_onca = false;
+    }
     // Update is called once per frame
     void Update()
     {
+
+        if (ataque_da_onca)
+        {
+
+            StartCoroutine(Efeito_Ataque_Onca());
+
+        }
+
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             //acceleration = 4;
@@ -69,7 +82,7 @@ public class PlayerArms : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (CanFire == true)
+            if (CanFire == true && ataque_da_onca == false)
             {
                 if (GlobalAmmo.municaopistolacount > 1)
                 {
