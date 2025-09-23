@@ -70,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void DisableCurrentInteractable()
     {
-       /// HudController.instance.DisableInteractionText();
+        HudController.instance.DisableInteractionText();
         if (currentInteractable)
         {
             currentInteractable.DisableOutline();

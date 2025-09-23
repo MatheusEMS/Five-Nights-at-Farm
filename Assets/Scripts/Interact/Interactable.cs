@@ -31,4 +31,12 @@ public class Interactable : MonoBehaviour
     {
         outline.enabled = true;
     }
+    /// <summary>
+    /// SOMENTE PARA OS INGREDIENTES
+    /// </summary>
+    public void PegarIngrediente()
+    {
+        IngredientsController.Instance.PegouIngrediente(gameObject);
+
+    }
 }

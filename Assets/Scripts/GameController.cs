@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -12,8 +14,16 @@ public class GameController : MonoBehaviour
     public int clientesAtendidosInsatisfeitos = 0;
     private int fase = 0;
 
+    [SerializeField] private float tempoTelaPreta = 2f;
+    private float timer;
+
     [SerializeField] private TextMeshProUGUI Resultadotext;
     [SerializeField] private GameObject TelaResultados;
+    [SerializeField] private TextMeshProUGUI diaTXT;
+    [SerializeField] private Image TelaPretaPrefase;
+
+    [SerializeField] private TextMeshProUGUI continuarTentarTXT;
+
 
     private enum StateGame
     {
@@ -23,7 +33,7 @@ public class GameController : MonoBehaviour
         Resultados,
         Pausado
     }
-    private StateGame estadoJogo = StateGame.Jogando; //jogando no momento para teste
+    private StateGame estadoJogo = StateGame.Prefase; //jogando no momento para teste
 
     public bool pausa = true; //pausa jogador,npcs e inimigo, controla qd move
 
@@ -38,7 +48,7 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        timer = tempoTelaPreta;
     }
 
     // Update is called once per frame
@@ -49,11 +59,31 @@ public class GameController : MonoBehaviour
             case StateGame.Intro:
                 pausa = true;
 
+                    //intro
 
                 break;
             case StateGame.Prefase:
-                pausa = true;
 
+                //tira cursor e trava o mouse
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+
+                pausa = true;
+                diaTXT.text = "Dia " + (fase + 1);
+
+                timer -= Time.deltaTime;
+
+                if (timer < 0f)
+                {
+                    // colocar transição para reiniciar a cena
+                    diaTXT.DOFade(0, 3);
+                    TelaPretaPrefase.DOFade(0, 4);
+                }
+
+                if(diaTXT.alpha <= 0.1)
+                {
+                    estadoJogo = StateGame.Jogando;
+                }
                 break;
             case StateGame.Jogando:
                 pausa = false;
@@ -66,6 +96,7 @@ public class GameController : MonoBehaviour
                         Debug.Log("Não passou de fase");
 
                         Resultadotext.text = "Não passou de fase";
+                        continuarTentarTXT.text = "Tentar de Novo";
                         estadoJogo = StateGame.Resultados;
                     }
                     else
@@ -75,6 +106,7 @@ public class GameController : MonoBehaviour
                         fase++;
 
                         Resultadotext.text = "Passou de fase";
+                        continuarTentarTXT.text = "Continuar";
                         estadoJogo = StateGame.Resultados;
                     }
                 }
@@ -82,18 +114,26 @@ public class GameController : MonoBehaviour
             case StateGame.Resultados:
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.Confined;
                     pausa = true;
-                    TelaResultados.SetActive(true);
 
-                    //colocar botão para ir para a proxima fase
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (diaTXT.alpha > 0)
                     {
-                        clientesAtendidosSatisfeitos = 0;
-                        clientesAtendidosInsatisfeitos = 0;
-
                         TelaResultados.SetActive(false);
+                        
+                    }else
+                    {
+                        TelaResultados.SetActive(true);
+                    }
 
-                        estadoJogo = StateGame.Jogando;
+                    //Debug.Log("ALPHA: " + diaTXT.alpha);
+
+                    if (diaTXT.alpha >= 0.98)
+                    {
+                        Debug.Log("entrou aqui");
+                        timer = tempoTelaPreta;
+                        estadoJogo = StateGame.Prefase;
                     }
                 }
 
@@ -104,7 +144,7 @@ public class GameController : MonoBehaviour
         }
     }
     
-        void OnGUI()
+     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(Screen.width - 700, 0, 400, Screen.height));
         GUILayout.Label("\n" + string.Join("\n", "Clientes satisfeitos " + clientesAtendidosSatisfeitos,
@@ -112,5 +152,22 @@ public class GameController : MonoBehaviour
         "fase: " + fase,
         "Estado: " + estadoJogo));
         GUILayout.EndArea();
+    }
+
+
+    //botoes resultados
+    public void ClicouBotaoContinuarTentar()
+    {
+        Debug.Log("CLICOU BOTAO");
+
+
+        clientesAtendidosSatisfeitos = 0;
+        clientesAtendidosInsatisfeitos = 0;
+
+
+        diaTXT.text = "Dia " + (fase + 1);
+        diaTXT.DOFade(1, 3);
+        TelaPretaPrefase.DOFade(1, 4);
+
     }
 }

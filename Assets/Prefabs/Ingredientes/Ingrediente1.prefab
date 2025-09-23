@@ -145,13 +145,13 @@ MonoBehaviour:
   onInteraction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IngredientsController, Assembly-CSharp
-        m_MethodName: PegouFruta
-        m_Mode: 2
+      - m_Target: {fileID: 6469357885860452673}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: PegarIngrediente
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 7965904060544333217}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

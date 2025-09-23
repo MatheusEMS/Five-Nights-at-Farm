@@ -15,7 +15,7 @@ public class IngredientsController : MonoBehaviour
 
     private List<int> receita;
     private List<int> receitasProntas; //Receitas que podem ser feitas
-
+    public static IngredientsController Instance;
     [SerializeField] private List<GameObject> ReceitasParaSpawnar; //0 receita estragada , 1 receita1 , 2 receita2
 
     private enum estadosPanela
@@ -27,6 +27,12 @@ public class IngredientsController : MonoBehaviour
     };
     estadosPanela estadoAtualPanela = estadosPanela.vazia;
     private int qualReceita = 0;
+
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -154,6 +160,8 @@ public class IngredientsController : MonoBehaviour
 
     public void PegouIngrediente(GameObject ingrediente)
     {
+        
+
         if (GameObject.FindWithTag("segurando") == null)
         {
 
