@@ -53,79 +53,84 @@ public class PlayerArms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (ataque_da_onca)
+        if (GameController.instance.pausa == false) //pausa o player
         {
 
-            StartCoroutine(Efeito_Ataque_Onca());
-
-        }
-
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-        {
-            //acceleration = 4;
-            targetSpeed = 1;
-        }
-        else
-        {
-            //acceleration = 16;
-            targetSpeed = 0;
-        }
-
-        curSpeed = Mathf.MoveTowards(curSpeed, targetSpeed, Time.deltaTime * acceleration);
-
-        animBracos.SetFloat("curSpeed", curSpeed);
-
-        //se tiver mira, adicionar aiming no animator
-        aiming = Input.GetKey(KeyCode.Mouse1);
-        //animBracos.SetFloat("aiming", aiming);
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (CanFire == true && ataque_da_onca == false)
+            if (ataque_da_onca)
             {
-                if (GlobalAmmo.municaopistolacount > 1)
-                {
-                    GlobalAmmo.municaopistolacount -= 1;
-                    Shoot();
-                    CanFire = false;
-                    StartCoroutine(AtirandoPistola());
-                  }else{
 
-                    GlobalAmmo.municaopistolacount -= 1;
-                    CanFire = false;
-                    StartCoroutine(Recarregar());
+                StartCoroutine(Efeito_Ataque_Onca());
 
-                }
+            }
 
-                } 
-
-
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
-                //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
-                //Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
+                //acceleration = 4;
+                targetSpeed = 1;
+            }
+            else
+            {
+                //acceleration = 16;
+                targetSpeed = 0;
+            }
 
-                decal = oPooler.inst.GetPoolObj();
+            curSpeed = Mathf.MoveTowards(curSpeed, targetSpeed, Time.deltaTime * acceleration);
 
-                if (decal == null)
+            animBracos.SetFloat("curSpeed", curSpeed);
+
+            //se tiver mira, adicionar aiming no animator
+            aiming = Input.GetKey(KeyCode.Mouse1);
+            //animBracos.SetFloat("aiming", aiming);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (CanFire == true && ataque_da_onca == false)
                 {
-                    return;
+                    if (GlobalAmmo.municaopistolacount > 1)
+                    {
+                        GlobalAmmo.municaopistolacount -= 1;
+                        Shoot();
+                        CanFire = false;
+                        StartCoroutine(AtirandoPistola());
+                    }
+                    else
+                    {
+
+                        GlobalAmmo.municaopistolacount -= 1;
+                        CanFire = false;
+                        StartCoroutine(Recarregar());
+
+                    }
+
                 }
 
-                decal.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f);
-                decal.SetActive(true);
 
-                if (hit.collider.gameObject.CompareTag("Inimigo"))
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
                 {
-                    SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
-                }
-                else
-                {
-                    FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                    //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
+                    //Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
+
+                    decal = oPooler.inst.GetPoolObj();
+
+                    if (decal == null)
+                    {
+                        return;
+                    }
+
+                    decal.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f);
+                    decal.SetActive(true);
+
+                    if (hit.collider.gameObject.CompareTag("Inimigo"))
+                    {
+                        SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                    }
+                    else
+                    {
+                        FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                    }
                 }
             }
         }
