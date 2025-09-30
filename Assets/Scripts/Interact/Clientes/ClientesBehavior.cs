@@ -23,6 +23,12 @@ public class ClientesBehavior : MonoBehaviour
 
     private float step;
 
+    [SerializeField] GameObject popUpPrefab;
+
+    private bool checkPopup = false;
+
+    private GameObject popupObject;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,6 +56,26 @@ public class ClientesBehavior : MonoBehaviour
                     break;
                 case EstadosCliente.Esperando:
                     tempoEspera -= Time.deltaTime;
+
+                    if (checkPopup == false)
+                    {
+                        popupObject = Instantiate(popUpPrefab, new Vector3(transform.localPosition.x, gameObject.transform.position.y + 2, transform.localPosition.z), new Quaternion());
+                        //o que será mostrado em cada receita
+                        switch(ReceitaPedida)
+                        {
+                            case 1:
+                                popupObject.GetComponent<PopUps>().textValue = "2 Quadrados\n1 Bola";
+                                break;
+
+                            case 2:
+                                popupObject.GetComponent<PopUps>().textValue = "3 Quadrados";
+                                break;
+                        }
+
+                        
+                        checkPopup = true;
+                    }
+
                     if (tempoEspera <= 0)
                     {
                         estadoCliente = EstadosCliente.SaindoInsastifeito;
@@ -57,6 +83,9 @@ public class ClientesBehavior : MonoBehaviour
                     }
                     break;
                 case EstadosCliente.SaindoSatisfeito:
+                    //colocar popup dele feliz
+
+                    Destroy(popupObject);
                     if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
                     {
                         Destroy(gameObject);
@@ -68,6 +97,9 @@ public class ClientesBehavior : MonoBehaviour
                     }
                     break;
                 case EstadosCliente.SaindoInsastifeito:
+                    //colocar popup dele bravo
+
+                    Destroy(popupObject);
                     if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
                     {
                         Destroy(gameObject);

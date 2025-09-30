@@ -5,7 +5,7 @@ public class SpritesBillboard : MonoBehaviour
     [SerializeField] bool freezeXZaxis = true;
 
     // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
         if (freezeXZaxis)
         {
