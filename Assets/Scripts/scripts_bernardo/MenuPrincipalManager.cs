@@ -10,8 +10,9 @@ public class MenuPrincipalManager : MonoBehaviour
 
     public void jogar()
     {
-
-        SceneManager.LoadScene(nomeDoLevelDoJogo);
+        //utilizando o SceneController
+        SceneController.instance.LoadScene(nomeDoLevelDoJogo);
+        //SceneManager.LoadScene(nomeDoLevelDoJogo);
 
     }
     public void AbrirCreditos()
