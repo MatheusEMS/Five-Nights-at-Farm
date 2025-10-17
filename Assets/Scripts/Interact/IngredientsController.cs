@@ -28,6 +28,18 @@ public class IngredientsController : MonoBehaviour
     estadosPanela estadoAtualPanela = estadosPanela.vazia;
     private int qualReceita = 0;
 
+    //pegar a posicao da panela
+    [SerializeField]private GameObject panela;
+
+    //Popups
+    [SerializeField] private GameObject popUpPrefab;
+
+    private List<String> listaIngredPanela;
+
+    private bool checkPopup = false;
+
+    private GameObject popupObject;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -53,6 +65,14 @@ public class IngredientsController : MonoBehaviour
             0  //RECEITA 2 - Ingrediente 2
         };
         countDown = tempoCozinhar;
+
+
+        popupObject = Instantiate(popUpPrefab, new Vector3(panela.transform.position.x, panela.transform.position.y + 1, panela.transform.position.z), new Quaternion());
+
+        listaIngredPanela = new List<string>()
+        {
+
+        };
     }
 
     // Update is called once per frame
@@ -104,6 +124,11 @@ public class IngredientsController : MonoBehaviour
                 }
             }
 
+            //tirar os ingredientes do popup
+            listaIngredPanela.Clear();
+
+            popupObject.GetComponent<PopUps>().textValue = "";
+
             estadoAtualPanela = estadosPanela.cozinhando;
             print("cozinhado, mas errou a receita");
             qualReceita = 0;
@@ -123,11 +148,17 @@ public class IngredientsController : MonoBehaviour
                 if (GameObject.FindWithTag("segurando").name == "Ingrediente1(Clone)")
                 {
                     receita[0]++;
+                    listaIngredPanela.Add("Ingrediente1");
                 }
                 else if (GameObject.FindWithTag("segurando").name == "Ingrediente2(Clone)")
                 {
                     receita[1]++;
+                    listaIngredPanela.Add("Ingrediente2");
                 }
+
+                Debug.Log("O QUE TEM NA PANELA: " + string.Join(", ", listaIngredPanela));
+
+                popupObject.GetComponent<PopUps>().textValue = string.Join(", ", listaIngredPanela);
 
                 estadoAtualPanela = estadosPanela.disponivel;
 

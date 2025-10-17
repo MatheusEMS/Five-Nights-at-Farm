@@ -12,5 +12,9 @@ public class PopUps : MonoBehaviour
         text.text = textValue;
     }
 
+    private void Update()
+    {
+        text.text = textValue;
+    }
 
 }

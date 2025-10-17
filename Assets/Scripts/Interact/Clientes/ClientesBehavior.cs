@@ -23,7 +23,7 @@ public class ClientesBehavior : MonoBehaviour
 
     private float step;
 
-    [SerializeField] GameObject popUpPrefab;
+    [SerializeField] private GameObject popUpPrefab;
 
     private bool checkPopup = false;
 
@@ -64,11 +64,11 @@ public class ClientesBehavior : MonoBehaviour
                         switch(ReceitaPedida)
                         {
                             case 1:
-                                popupObject.GetComponent<PopUps>().textValue = "2 Quadrados\n1 Bola";
+                                popupObject.GetComponent<PopUps>().textValue = "2 Quadrados\n1 Bola\n";
                                 break;
 
                             case 2:
-                                popupObject.GetComponent<PopUps>().textValue = "3 Quadrados";
+                                popupObject.GetComponent<PopUps>().textValue = "3 Quadrados\n";
                                 break;
                         }
 

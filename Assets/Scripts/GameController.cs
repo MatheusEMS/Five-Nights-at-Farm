@@ -114,9 +114,14 @@ public class GameController : MonoBehaviour
             case StateGame.Resultados:
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
-                    Cursor.visible = true;
+                    //Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.Confined;
                     pausa = true;
+
+                    if (diaTXT.alpha <= 0 && Input.GetKeyDown(KeyCode.E))
+                    {
+                        ClicouBotaoContinuarTentar();
+                    }
 
                     if (diaTXT.alpha > 0)
                     {
