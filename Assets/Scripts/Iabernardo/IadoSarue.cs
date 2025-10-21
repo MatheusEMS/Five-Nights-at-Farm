@@ -11,6 +11,7 @@ public class IadoSarue : MonoBehaviour
     public Transform fugapoint;
     [SerializeField] private bool fuga = false;
     NavMeshAgent agent;
+    [SerializeField] private Collider colliderdmg;
 
     public float timer = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

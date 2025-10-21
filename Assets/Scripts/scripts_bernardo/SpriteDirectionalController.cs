@@ -16,12 +16,11 @@ public class SpriteDirectionalController : MonoBehaviour
     {
 
 
-        if (olhar_pro_player)
-        {
-            StartCoroutine(olhar_player());
-
-        }
-
+      
+        // StartCoroutine(olhar_player());
+        //  transform.LookAt(playerTransform, Vector3.up);
+        //transform.LookAt(playerTransform, Vector3.up);
+        transform.rotation = Quaternion.Euler(360, 0, 360);
 
         Vector3 camFowardVector = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);    
 
@@ -66,12 +65,13 @@ public class SpriteDirectionalController : MonoBehaviour
         animator.SetFloat("movex", animationDirection.x);
         animator.SetFloat("movey", animationDirection.y);
     }
-    IEnumerator olhar_player()
-    {
-      //  transform.LookAt(targetPoint, Vector3.up);
-        yield return new WaitForSeconds(1);
-        olhar_pro_player = true;
+  
+    
+
+        
+       
+       
 
 
-    }
+    
 }

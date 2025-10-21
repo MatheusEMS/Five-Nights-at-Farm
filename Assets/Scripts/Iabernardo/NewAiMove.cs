@@ -20,6 +20,7 @@ public class NewAiMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(playerTransform, Vector3.up);
         timer -= Time.deltaTime;
         if (timer < 0.0f)
         {
@@ -30,6 +31,8 @@ public class NewAiMove : MonoBehaviour
             }
             timer = maxTime;
         }
+
+        //transform.LookAt(playerTransform, Vector3.up);
 
     }
 }
