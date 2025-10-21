@@ -29,6 +29,16 @@ public class PlayerArms : MonoBehaviour
     public LayerMask mask;
     [SerializeField] bool CanFire = true;
 
+
+    //Audios
+    AudioManager audioManager;
+
+    //pega o audioManager
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+    }
+
     public void Eject(GameObject prefab)
     {
         var projectObj = Instantiate(prefab, posEject.position, Quaternion.identity);
@@ -76,7 +86,7 @@ public class PlayerArms : MonoBehaviour
 
             curSpeed = Mathf.MoveTowards(curSpeed, targetSpeed, Time.deltaTime * acceleration);
 
-            animBracos.SetFloat("curSpeed", curSpeed);
+            //animBracos.SetFloat("curSpeed", curSpeed);
 
             //se tiver mira, adicionar aiming no animator
             aiming = Input.GetKey(KeyCode.Mouse1);
@@ -88,49 +98,51 @@ public class PlayerArms : MonoBehaviour
                 {
                     if (GlobalAmmo.municaopistolacount > 1)
                     {
+                        Debug.Log("atirou");
                         GlobalAmmo.municaopistolacount -= 1;
+                        audioManager.PlaySFX(audioManager.shoot);
                         Shoot();
                         CanFire = false;
                         StartCoroutine(AtirandoPistola());
                     }
                     else
                     {
-
+                        Debug.Log("atirou ultima bala");
+                        audioManager.PlaySFX(audioManager.shoot);
                         GlobalAmmo.municaopistolacount -= 1;
                         CanFire = false;
                         StartCoroutine(Recarregar());
 
                     }
 
-                }
+                    RaycastHit hit;
 
-
-
-                RaycastHit hit;
-
-                if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
-                {
-                    //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
-                    //Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
-
-                    decal = oPooler.inst.GetPoolObj();
-
-                    if (decal == null)
+                    if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
                     {
-                        return;
-                    }
+                        //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
+                        //Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
 
-                    decal.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f);
-                    decal.SetActive(true);
+                        decal = oPooler.inst.GetPoolObj();
 
-                    if (hit.collider.gameObject.CompareTag("Inimigo"))
-                    {
-                        SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                        if (decal == null)
+                        {
+                            return;
+                        }
+
+                        decal.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f);
+                        decal.SetActive(true);
+
+                        if (hit.collider.gameObject.CompareTag("Inimigo"))
+                        {
+                            SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                        }
+                        else
+                        {
+                            FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                        }
+
                     }
-                    else
-                    {
-                        FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
-                    }
+               
                 }
             }
         }
@@ -146,7 +158,9 @@ public class PlayerArms : MonoBehaviour
         //}
         //else
         //{
-        animBracos.CrossFade("PistolShoot", 0.02f, 0, 0);
+
+        //animacao
+        //animBracos.CrossFade("PistolShoot", 0.02f, 0, 0);
 
         //se tiver muito efeitos, fazer instantiate com o objPooling é o melhor
         //vfxFumaca.SendEvent("TiroHit");

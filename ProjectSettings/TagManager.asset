@@ -10,6 +10,9 @@ TagManager:
   - entregar
   - Comida
   - fugapoint
+  - arma
+  - audio
+  - dirt
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - Inimigo
   - receita
   - cliente
-  - 
+  - ground
   - 
   - 
   - 

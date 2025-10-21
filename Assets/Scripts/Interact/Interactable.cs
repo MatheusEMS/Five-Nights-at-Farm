@@ -10,6 +10,17 @@ public class Interactable : MonoBehaviour
     public string message;
 
     public UnityEvent onInteraction;
+
+    //Audios
+    AudioManager audioManager;
+
+    //pega o audioManager
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +30,7 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
+        audioManager.PlaySFX(audioManager.pickup);
         onInteraction.Invoke();
     }
 
@@ -36,6 +48,7 @@ public class Interactable : MonoBehaviour
     /// </summary>
     public void PegarIngrediente()
     {
+        audioManager.PlaySFX(audioManager.pickup);
         IngredientsController.Instance.PegouIngrediente(gameObject);
 
     }

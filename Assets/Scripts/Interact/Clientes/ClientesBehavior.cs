@@ -11,6 +11,7 @@ public class ClientesBehavior : MonoBehaviour
         SaindoSatisfeito,
         SaindoInsastifeito
     }
+
     private EstadosCliente estadoCliente = EstadosCliente.Chegando;
 
     public float speed;
@@ -134,7 +135,7 @@ public class ClientesBehavior : MonoBehaviour
                         GameController.instance.clientesAtendidosInsatisfeitos++;
 
                         Destroy(GameObject.FindWithTag("segurando"));
-                        //GameObject.FindWithTag("arma").SetActive(true); // m funcioa pois a arma está dividida
+                        IngredientsController.Instance.arma.SetActive(true);
 
                         Debug.Log("Perdeu reputa��o");
 
@@ -148,7 +149,8 @@ public class ClientesBehavior : MonoBehaviour
                             GameController.instance.clientesAtendidosSatisfeitos++;
 
                             Destroy(GameObject.FindWithTag("segurando"));
-                            //GameObject.FindWithTag("arma").SetActive(true);     
+                            IngredientsController.Instance.arma.SetActive(true);
+
                             Debug.Log("Ganhou reputa��o");
                             return;
                         }

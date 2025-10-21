@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -17,13 +19,17 @@ public class GameController : MonoBehaviour
     [SerializeField] private float tempoTelaPreta = 2f;
     private float timer;
 
+    [Header("------- Hud References -------")]
     [SerializeField] private TextMeshProUGUI Resultadotext;
     [SerializeField] private GameObject TelaResultados;
     [SerializeField] private TextMeshProUGUI diaTXT;
     [SerializeField] private Image TelaPretaPrefase;
+    [SerializeField] private GameObject Hud;
 
     [SerializeField] private TextMeshProUGUI continuarTentarTXT;
 
+    //pos inicial player
+    private Vector3 InitialPos;
 
     private enum StateGame
     {
@@ -48,6 +54,8 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        InitialPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         timer = tempoTelaPreta;
     }
 
@@ -58,13 +66,15 @@ public class GameController : MonoBehaviour
         {
             case StateGame.Intro:
                 pausa = true;
+                Hud.SetActive(false);
 
-                    //intro
+                //intro
 
                 break;
             case StateGame.Prefase:
 
                 //tira cursor e trava o mouse
+                Hud.SetActive(false);
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
 
@@ -86,6 +96,7 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case StateGame.Jogando:
+                Hud.SetActive(true);
                 pausa = false;
 
                 if (clientesAtendidosSatisfeitos + clientesAtendidosInsatisfeitos == quantClientes[fase])
@@ -112,6 +123,7 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case StateGame.Resultados:
+                Hud.SetActive(false);
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
                     //Cursor.visible = true;
@@ -165,6 +177,8 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("CLICOU BOTAO");
 
+        StartCoroutine(ResetPlayerPositionWithDelay());
+        
 
         clientesAtendidosSatisfeitos = 0;
         clientesAtendidosInsatisfeitos = 0;
@@ -174,5 +188,13 @@ public class GameController : MonoBehaviour
         diaTXT.DOFade(1, 3);
         TelaPretaPrefase.DOFade(1, 4);
 
+    }
+
+    IEnumerator ResetPlayerPositionWithDelay()
+    {
+        // Espera o tempo especificado
+        yield return new WaitForSeconds(4f);
+
+        GameObject.FindGameObjectWithTag("Player").transform.position = InitialPos;
     }
 }

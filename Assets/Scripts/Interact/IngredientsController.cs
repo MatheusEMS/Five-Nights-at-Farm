@@ -9,7 +9,7 @@ public class IngredientsController : MonoBehaviour
     private Transform spawnUsado;
     //[SerializeField]
     //private GameObject prefabIngrediente1,prefabIngrediente2;
-    [SerializeField] private GameObject arma;
+    [SerializeField] public GameObject arma;
     [SerializeField] private float tempoCozinhar = 10f;
     private float countDown;
 
@@ -118,6 +118,10 @@ public class IngredientsController : MonoBehaviour
                 qualReceita++;
                 if (receita[0] == receitasProntas[i] && receita[1] == receitasProntas[i+1])
                 {
+                    //tirar os ingredientes do popup
+                    listaIngredPanela.Clear();
+                    popupObject.GetComponent<PopUps>().textValue = "";
+
                     estadoAtualPanela = estadosPanela.cozinhando;
                     print("cozinhado receita: " + qualReceita);
                     return;

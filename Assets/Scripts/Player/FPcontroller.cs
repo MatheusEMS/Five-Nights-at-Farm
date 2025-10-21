@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPcontroller : MonoBehaviour
@@ -28,7 +29,14 @@ public class FPcontroller : MonoBehaviour
 
     [SerializeField] float currentPitch = 0f;
 
+    //Passos
+    [SerializeField] private Animator steps;
 
+
+    private void Awake()
+    {
+        steps.SetBool("Andando", false);
+    }
 
     public float CurrentPitch
     {
@@ -49,6 +57,7 @@ public class FPcontroller : MonoBehaviour
         }
     }
 
+
     void Update()
     {
 
@@ -66,6 +75,9 @@ public class FPcontroller : MonoBehaviour
 
             }
             LookUpdate();
+        }else
+        {
+            steps.SetBool("Andando", false);
         }
 
     }
@@ -78,10 +90,14 @@ public class FPcontroller : MonoBehaviour
 
         if (motion.sqrMagnitude >= 0.01f)
         {
+            steps.SetBool("Andando", true);
+            //Debug.Log("suposto move");
             CurrentVelocity = Vector3.MoveTowards(CurrentVelocity, motion * MaxSpeed, Acceleration * Time.deltaTime);
         }
         else
         {
+            //Debug.Log("suposto parado");
+            steps.SetBool("Andando", false);
             CurrentVelocity = Vector3.MoveTowards(CurrentVelocity, Vector3.zero, Acceleration * Time.deltaTime);
         }
 
