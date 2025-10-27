@@ -19,7 +19,7 @@ public class CausandoDano : MonoBehaviour
 
 
 
-        if (other.CompareTag("Player") && especie == "cobra")
+        if (other.CompareTag("Player") && especie == "cobra" && colliderdmg.enabled == true)
         {
            
 
@@ -29,7 +29,7 @@ public class CausandoDano : MonoBehaviour
             colliderdmg.enabled = false;
 
         }
-        else if (other.CompareTag("Player") && especie == "onca")
+        else if (other.CompareTag("Player") && especie == "onca" && colliderdmg.enabled == true)
         {
             SistemadeVida Player = other.GetComponent<SistemadeVida>();
             Player.TakeDamage(damage);
