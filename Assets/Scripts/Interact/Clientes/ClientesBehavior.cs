@@ -65,11 +65,11 @@ public class ClientesBehavior : MonoBehaviour
                         switch(ReceitaPedida)
                         {
                             case 1:
-                                popupObject.GetComponent<PopUps>().textValue = "2 Quadrados\n1 Bola\n";
+                                popupObject.GetComponent<PopUps>().textValue = "2 Bananas\n1 Bola\n";
                                 break;
 
                             case 2:
-                                popupObject.GetComponent<PopUps>().textValue = "3 Quadrados\n";
+                                popupObject.GetComponent<PopUps>().textValue = "3 Bananas\n";
                                 break;
                         }
 
@@ -77,9 +77,17 @@ public class ClientesBehavior : MonoBehaviour
                         checkPopup = true;
                     }
 
+                    popupObject.GetComponent<PopUps>().timer = tempoEspera;
+
                     if (tempoEspera <= 0)
                     {
                         estadoCliente = EstadosCliente.SaindoInsastifeito;
+                        GameController.instance.clientesAtendidosInsatisfeitos++;
+
+                        Destroy(GameObject.FindWithTag("segurando"));
+                        IngredientsController.Instance.arma.SetActive(true);
+                        GameObject.FindWithTag("hud").SetActive(true);
+
                         Debug.Log("Perdeu reputa��o");
                     }
                     break;
@@ -137,7 +145,7 @@ public class ClientesBehavior : MonoBehaviour
                         Destroy(GameObject.FindWithTag("segurando"));
                         IngredientsController.Instance.arma.SetActive(true);
 
-                        Debug.Log("Perdeu reputa��o");
+                        Debug.Log("Perdeu reputa��o 1");
 
                         return;
                     }
@@ -162,7 +170,7 @@ public class ClientesBehavior : MonoBehaviour
             estadoCliente = EstadosCliente.SaindoInsastifeito;
             GameController.instance.clientesAtendidosInsatisfeitos++;
             Destroy(GameObject.FindWithTag("segurando"));
-            Debug.Log("Perdeu reputa��o");
+            Debug.Log("Perdeu reputa��o 2");
         }
     }
 

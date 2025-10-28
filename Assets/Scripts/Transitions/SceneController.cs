@@ -59,5 +59,10 @@ public class SceneController : MonoBehaviour
         yield return null;
 
         transitionAnim.SetTrigger("Start");
+
+        if (next == "SampleScene")
+        {
+            Debug.Log("carregou");
+        }
     }
 }

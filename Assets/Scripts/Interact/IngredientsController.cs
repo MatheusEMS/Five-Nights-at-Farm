@@ -68,6 +68,7 @@ public class IngredientsController : MonoBehaviour
 
 
         popupObject = Instantiate(popUpPrefab, new Vector3(panela.transform.position.x, panela.transform.position.y + 1, panela.transform.position.z), new Quaternion());
+        popupObject.GetComponent<PopUps>().timer = countDown;
 
         listaIngredPanela = new List<string>()
         {
@@ -81,6 +82,7 @@ public class IngredientsController : MonoBehaviour
         if (GameController.instance.pausa == false && estadoAtualPanela == estadosPanela.cozinhando)
         {
             countDown -= Time.deltaTime;
+            popupObject.GetComponent<PopUps>().timer = countDown;
             if (countDown <= 0)
             {
                 //dar nome e ve se existe para não spawnar varias receitas
@@ -149,10 +151,10 @@ public class IngredientsController : MonoBehaviour
         {
             if (estadoAtualPanela == estadosPanela.disponivel || estadoAtualPanela == estadosPanela.vazia) 
             {
-                if (GameObject.FindWithTag("segurando").name == "Ingrediente1(Clone)")
+                if (GameObject.FindWithTag("segurando").name == "Banana(Clone)")
                 {
                     receita[0]++;
-                    listaIngredPanela.Add("Ingrediente1");
+                    listaIngredPanela.Add("Banana");
                 }
                 else if (GameObject.FindWithTag("segurando").name == "Ingrediente2(Clone)")
                 {
@@ -226,7 +228,7 @@ public class IngredientsController : MonoBehaviour
         {
             Debug.Log("Doesn't exist");
 
-            if (ingrediente.name == "Ingrediente1")
+            if (ingrediente.name == "Banana")
             {
                 spawnUsado = spawnPointIngrediente;
             }

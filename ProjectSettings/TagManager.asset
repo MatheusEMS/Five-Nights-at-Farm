@@ -13,6 +13,7 @@ TagManager:
   - arma
   - audio
   - dirt
+  - hud
   layers:
   - Default
   - TransparentFX

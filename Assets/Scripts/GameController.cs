@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController instance { get; private set; }
+    public static GameController instance;
+
     //[SerializeField] private List<float> tempoFase; //se tiver tempo para cada fase
     [SerializeField] private List<int> quantClientes; //qts de clientes que aparece em cada fase
     [SerializeField] private List<int> quantasFalhas; //qts de clientes insastafeito pode deixar para passar de fase
@@ -43,14 +44,19 @@ public class GameController : MonoBehaviour
 
     public bool pausa = true; //pausa jogador,npcs e inimigo, controla qd move
 
-    void Awake()
+    private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Destroy(instance);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -67,6 +73,7 @@ public class GameController : MonoBehaviour
             case StateGame.Intro:
                 pausa = true;
                 Hud.SetActive(false);
+                TelaResultados.SetActive(false);
 
                 //intro
 
@@ -123,9 +130,10 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case StateGame.Resultados:
-                Hud.SetActive(false);
+
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
+                    Hud.SetActive(false);
                     //Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.Confined;
                     pausa = true;
@@ -146,12 +154,12 @@ public class GameController : MonoBehaviour
 
                     //Debug.Log("ALPHA: " + diaTXT.alpha);
 
-                    if (diaTXT.alpha >= 0.98)
+                    /*if (diaTXT.alpha >= 0.98)
                     {
                         Debug.Log("entrou aqui");
                         timer = tempoTelaPreta;
                         estadoJogo = StateGame.Prefase;
-                    }
+                    }*/
                 }
 
                 break;
@@ -175,18 +183,25 @@ public class GameController : MonoBehaviour
     //botoes resultados
     public void ClicouBotaoContinuarTentar()
     {
+
+        HudController.instance.DisableInteractionText();
+
         Debug.Log("CLICOU BOTAO");
 
-        StartCoroutine(ResetPlayerPositionWithDelay());
-        
+
 
         clientesAtendidosSatisfeitos = 0;
         clientesAtendidosInsatisfeitos = 0;
 
+        //StartCoroutine(ResetPlayerPositionWithDelay());
+        SceneController.instance.LoadScene("SampleScene");
 
-        diaTXT.text = "Dia " + (fase + 1);
-        diaTXT.DOFade(1, 3);
-        TelaPretaPrefase.DOFade(1, 4);
+        estadoJogo = StateGame.Intro;
+
+
+        //diaTXT.text = "Dia " + (fase + 1);
+        //diaTXT.DOFade(1, 3);
+        //TelaPretaPrefase.DOFade(1, 4);
 
     }
 
@@ -194,7 +209,9 @@ public class GameController : MonoBehaviour
     {
         // Espera o tempo especificado
         yield return new WaitForSeconds(4f);
+        //estadoJogo = StateGame.Prefase;
 
-        GameObject.FindGameObjectWithTag("Player").transform.position = InitialPos;
+        //GameObject.FindGameObjectWithTag("Player").transform.position = InitialPos;
+
     }
 }

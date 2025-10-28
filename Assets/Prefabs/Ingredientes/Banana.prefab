@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4384977088524574539
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.018861387
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.012574257
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_Name
+      value: Banana
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4534362391153167964}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5250874816365736403}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4804401485268823671}
+  m_SourcePrefab: {fileID: 100100000, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+--- !u!1 &3466637824692249114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f66a76bf50844240bc8215bf8f3a7ca, type: 3}
+  m_PrefabInstance: {fileID: 4384977088524574539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4534362391153167964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466637824692249114}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3.7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &5250874816365736403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466637824692249114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357036cc80f366640a88e011befcdf15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Pickup Banana
+  onInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5250874816365736403}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: PegarIngrediente
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!136 &4804401485268823671
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466637824692249114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.36918208
+  m_Height: 1.0254849
+  m_Direction: 2
+  m_Center: {x: -0.22818226, y: -0.19488478, z: 0.43161124}
