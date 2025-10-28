@@ -620,6 +620,7 @@ GameObject:
   - component: {fileID: 3947998419868424722}
   - component: {fileID: 8727070881945618092}
   - component: {fileID: 5654048581798788076}
+  - component: {fileID: 9018495919289903911}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -750,3 +751,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerReach: 3
   point: {fileID: 4569649251381864718}
+--- !u!114 &9018495919289903911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862585102087678910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68563fad721deb8489fc66509e2b31eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20

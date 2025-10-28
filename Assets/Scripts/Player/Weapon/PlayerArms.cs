@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerArms : MonoBehaviour
 {
     //video : codigo de movimento de camera 3
-
     [SerializeField] Animator animBracos;
     public bool ataque_da_onca = false;
     //float para ter uma interpolação entre anim
@@ -33,6 +33,14 @@ public class PlayerArms : MonoBehaviour
     //Audios
     AudioManager audioManager;
 
+    //Codigo para dano com os animais
+    [SerializeField] public GameObject Ia_sarue;
+    [SerializeField] public GameObject Ia_cobra;
+    [SerializeField] public GameObject Ia_onca;
+    public List<GameObject> ia_animais;
+    public GameObject ia_alvo;
+    public GameObject alvo;
+    [SerializeField] private float damage;
     //pega o audioManager
     private void Awake()
     {
@@ -96,22 +104,27 @@ public class PlayerArms : MonoBehaviour
             {
                 if (CanFire == true && ataque_da_onca == false)
                 {
+
+                    
                     if (GlobalAmmo.municaopistolacount > 1)
                     {
+                        StartCoroutine(AtirandoPistola());
                         Debug.Log("atirou");
-                        GlobalAmmo.municaopistolacount -= 1;
+                        //GlobalAmmo.municaopistolacount -= 1;
                         audioManager.PlaySFX(audioManager.shoot);
                         Shoot();
-                        CanFire = false;
-                        StartCoroutine(AtirandoPistola());
+                        
+                        //CanFire = false;
+                        
                     }
                     else
                     {
                         Debug.Log("atirou ultima bala");
                         audioManager.PlaySFX(audioManager.shoot);
                         GlobalAmmo.municaopistolacount -= 1;
-                        CanFire = false;
                         StartCoroutine(Recarregar());
+                        CanFire = false;
+                        
 
                     }
 
@@ -123,6 +136,32 @@ public class PlayerArms : MonoBehaviour
                         //Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
 
                         decal = oPooler.inst.GetPoolObj();
+                        ///acertar um inimigo
+                        if(hit.transform.gameObject == Ia_cobra  && GlobalAmmo.municaopistolacount > 1)
+                        {
+                            ia_alvo = hit.transform.gameObject;
+                           // alvo = ia_alvo.GetInstanceID();
+                            SistemadeVida vida = GetComponent<SistemadeVida>();
+                            vida.TakeDamage3(damage);
+                        }
+                        else if(hit.transform.gameObject == Ia_onca && GlobalAmmo.municaopistolacount > 1)
+                        {
+                            ia_alvo = hit.transform.gameObject;
+                           // ia_alvo.GetInstanceID();
+                            SistemadeVida vida = GetComponent<SistemadeVida>();
+                            vida.TakeDamage3(damage);
+
+                        }
+                        else if(hit.transform.gameObject == Ia_sarue && GlobalAmmo.municaopistolacount > 1) {
+                           
+                            ia_alvo = hit.transform.gameObject;
+                           // ia_alvo.GetInstanceID();
+                            SistemadeVida vida = GetComponent<SistemadeVida>();
+                            vida.TakeDamage3(damage);
+
+
+                        }
+                       // ia_alvo = null;
 
                         if (decal == null)
                         {
@@ -182,15 +221,16 @@ public class PlayerArms : MonoBehaviour
     
     IEnumerator AtirandoPistola()
     {
-        yield return new WaitForSeconds(0.8f);
-        CanFire = true; 
-
+        GlobalAmmo.municaopistolacount -= 1;
+        yield return new WaitForSeconds(5);
+        CanFire = true;
+        
 
     }
     IEnumerator Recarregar()
     {
 
-        yield return new WaitForSeconds(1.8f);
+       yield return 
 
         CanFire = true;
         GlobalAmmo.municaopistolacount = 8;

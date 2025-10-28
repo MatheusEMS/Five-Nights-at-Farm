@@ -1,20 +1,35 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class spawner : MonoBehaviour
 {
-    public Transform spawnerlocation;
-   [SerializeField] public GameObject Ia;
+    //public Transform spawnerlocation;
+    [SerializeField] public GameObject Ia_sarue;
+    [SerializeField] public GameObject Ia_cobra;
+    [SerializeField] public GameObject Ia_onca;
+    public List<GameObject> spawnlist;
+    private int ia;
     private int xPos;
     private int zPos;
     private int xPosF;
     private int zPosF;
     [SerializeField] public int xPosV;
     [SerializeField] public int zPosV;
-    public int Timer = 2;
-    private bool spaw = true;
+    public int timer = 2;
+    [SerializeField] private bool spaw = true;
+    [SerializeField] private bool surge = false;
     [SerializeField] public int EnemyCount;
+
+
+    private void Start()
+    {
+        spawnlist.Add(Ia_sarue);
+        spawnlist.Add(Ia_cobra);
+        spawnlist.Add(Ia_onca);
+    }
+
 
     private void Update()
     {
@@ -32,19 +47,20 @@ public class spawner : MonoBehaviour
     IEnumerator SpawInimigo()
     {
         spaw = false;
-
-        yield return new WaitForSeconds(Timer);
+        
+        yield return new WaitForSeconds(timer);
         if (EnemyCount < 20)
         {
             xPos = Random.Range(-16, 35);
             xPosF = xPosV + xPos;
             zPos = Random.Range(-20, 20);
             zPosF = zPosV + zPos;
+            ia = Random.Range(0,spawnlist.Count);
 
             EnemyCount++;
 
-            Instantiate(Ia, new Vector3(xPosF, -4, zPosF), Quaternion.identity);
-
+            Instantiate(spawnlist[ia], new Vector3(xPosF, -4, zPosF), Quaternion.identity);
+            surge = true;
 
         }
         spaw = true;
