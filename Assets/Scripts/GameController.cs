@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour
 
                 //tira cursor e trava o mouse
                 Hud.SetActive(false);
+                TelaResultados.SetActive(false);
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
 
@@ -133,6 +134,9 @@ public class GameController : MonoBehaviour
 
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
+                    //Parar musica
+                    AudioManager.instance.StopMusic();
+
                     Hud.SetActive(false);
                     //Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.Confined;
@@ -193,10 +197,12 @@ public class GameController : MonoBehaviour
         clientesAtendidosSatisfeitos = 0;
         clientesAtendidosInsatisfeitos = 0;
 
-        //StartCoroutine(ResetPlayerPositionWithDelay());
+        timer = tempoTelaPreta;
+
+        StartCoroutine(ResetPlayerPositionWithDelay());
         SceneController.instance.LoadScene("SampleScene");
 
-        estadoJogo = StateGame.Intro;
+        //estadoJogo = StateGame.Intro;
 
 
         //diaTXT.text = "Dia " + (fase + 1);
@@ -208,8 +214,13 @@ public class GameController : MonoBehaviour
     IEnumerator ResetPlayerPositionWithDelay()
     {
         // Espera o tempo especificado
-        yield return new WaitForSeconds(4f);
-        //estadoJogo = StateGame.Prefase;
+        yield return new WaitForSeconds(2f);
+        estadoJogo = StateGame.Prefase;
+        diaTXT.alpha = 1;
+
+        var tempColor = TelaPretaPrefase.color;
+        tempColor.a = 1f;
+        TelaPretaPrefase.color = tempColor;
 
         //GameObject.FindGameObjectWithTag("Player").transform.position = InitialPos;
 

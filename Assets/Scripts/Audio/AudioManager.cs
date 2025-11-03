@@ -1,8 +1,11 @@
 using UnityEngine;
 using Unity.Collections;
+using System;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+
     [Header("------- Audio Source -------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
@@ -13,6 +16,18 @@ public class AudioManager : MonoBehaviour
     public AudioClip pickup;
     //public AudioClip walkDirt;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -24,6 +39,11 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
     }
 
 }
