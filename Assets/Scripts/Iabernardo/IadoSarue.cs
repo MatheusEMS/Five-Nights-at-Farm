@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,7 @@ public class IadoSarue : MonoBehaviour
     [SerializeField] private bool fuga = false;
     NavMeshAgent agent;
     [SerializeField] private Collider colliderdmg;
+   
 
     public float timer = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,6 +21,8 @@ public class IadoSarue : MonoBehaviour
     {
 
         agent = GetComponent<NavMeshAgent>();
+      
+
 
     }
 
@@ -65,7 +69,8 @@ public class IadoSarue : MonoBehaviour
         }
           else if(other.CompareTag("fugapoint"))
           {
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);
+               // Destroy(this);
            // fuga = false;
 
           }

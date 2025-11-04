@@ -18,7 +18,7 @@ public class SistemadeVida : MonoBehaviour
         {
             if (health <= 0)
             {
-
+                
                 Destroy(gameObject);
 
             }
@@ -33,14 +33,14 @@ public class SistemadeVida : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        Debug.Log(health);
+       // Debug.Log(health);
         
         StartCoroutine(debuff_o());
     }
     public void TakeDamage2(float damage)
     {
         health -= damage;
-        Debug.Log(health);
+        //Debug.Log(health);
 
         StartCoroutine(debuff_C());
     }
@@ -48,6 +48,7 @@ public class SistemadeVida : MonoBehaviour
     {
         health -= damage;
         Debug.Log(health);
+
     }
 
 
