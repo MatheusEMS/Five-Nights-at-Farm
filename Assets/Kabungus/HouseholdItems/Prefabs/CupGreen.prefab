@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8222698734668137156}
   - component: {fileID: 526814352221376392}
   - component: {fileID: 2564015098671735921}
+  - component: {fileID: 3304726529797964388}
   m_Layer: 0
   m_Name: CupGreen
   m_TagString: Interactable
@@ -146,18 +147,31 @@ MonoBehaviour:
   onInteraction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IngredientsController, Assembly-CSharp
-        m_MethodName: SpawnaFruta
+      - m_Target: {fileID: 3304726529797964388}
+        m_TargetAssemblyTypeName: SpawnerController, Assembly-CSharp
+        m_MethodName: SpawnaIngrediente
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7932669312035034850, guid: 377efcd4faaa7ac4d8bbe8f9e1965e1e, type: 3}
+          m_ObjectArgument: {fileID: 7932669312035034850, guid: 8b765548db43df340a8f2340eb5c3605, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3304726529797964388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3710548342057947638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2596fc36d49e5a4791a38f584b1f53d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPointIngrediente: {fileID: 6363802433040695631}
 --- !u!1 &4094893227369227500
 GameObject:
   m_ObjectHideFlags: 0

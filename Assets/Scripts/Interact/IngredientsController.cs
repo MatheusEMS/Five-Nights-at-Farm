@@ -217,7 +217,7 @@ public class IngredientsController : MonoBehaviour
 
     }
 
-    public void SpawnaIngrediente(GameObject ingrediente)
+    /*public void SpawnaIngrediente(GameObject ingrediente)
     {
         if (GameObject.Find(ingrediente.name + "(Clone)"))
         {
@@ -240,7 +240,7 @@ public class IngredientsController : MonoBehaviour
             spawnUsado.transform.position.y,
             spawnUsado.transform.position.z), Quaternion.identity);
         }
-    }
+    }*/
 
     public void reciclar()
     {

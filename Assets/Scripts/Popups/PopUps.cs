@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PopUps : MonoBehaviour
 {
-    [SerializeField] private Text text;
+    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Slider slider;
     public string textValue;
     public float timer;
