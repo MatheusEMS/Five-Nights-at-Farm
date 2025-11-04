@@ -88,7 +88,7 @@ public class IngredientsController : MonoBehaviour
                 //dar nome e ve se existe para não spawnar varias receitas
                 Instantiate(ReceitasParaSpawnar[qualReceita], new Vector3(spawnReceita.transform.position.x,
                 spawnReceita.transform.position.y,
-                spawnReceita.transform.position.z), Quaternion.identity);
+                spawnReceita.transform.position.z), Quaternion.Euler(new Vector3(-90, 0, 0)));
 
                 countDown = tempoCozinhar;
                 estadoAtualPanela = estadosPanela.vazia;
@@ -205,7 +205,6 @@ public class IngredientsController : MonoBehaviour
             arma.SetActive(false);
 
             print(ingrediente);
-            
 
             ingrediente.transform.position = GameObject.Find("SeguraItem").transform.position;
             ingrediente.transform.SetParent(GameObject.Find("SeguraItem").transform);

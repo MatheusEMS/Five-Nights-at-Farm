@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ClientesController : MonoBehaviour
@@ -5,10 +6,20 @@ public class ClientesController : MonoBehaviour
     [SerializeField] private Transform SpawnPointClientes;
     [SerializeField] private GameObject Clientes;
 
+
+    private GameObject novoCliente;
+
+    private ClientesBehavior clientesBehavior;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
+        novoCliente = Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
+
+        clientesBehavior = novoCliente.GetComponent<ClientesBehavior>();
+
+        clientesBehavior.tempoMinEspera = 35f - 3 * GameController.instance.fase;
+        clientesBehavior.tempoMaxEspera = 50f - 4 * GameController.instance.fase;
     }
 
     // Update is called once per frame
@@ -22,7 +33,12 @@ public class ClientesController : MonoBehaviour
             }
             else
             {
-                Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
+                novoCliente = Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
+
+                clientesBehavior = novoCliente.GetComponent<ClientesBehavior>();
+
+                clientesBehavior.tempoMinEspera = 35f - 3 * GameController.instance.fase;
+                clientesBehavior.tempoMaxEspera = 50f - 4 * GameController.instance.fase;
                 //Debug.Log("n�o tem cliente");
             }
         }

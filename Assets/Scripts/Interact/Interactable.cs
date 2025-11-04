@@ -50,6 +50,11 @@ public class Interactable : MonoBehaviour
     {
         audioManager.PlaySFX(audioManager.pickup);
         IngredientsController.Instance.PegouIngrediente(gameObject);
+    }
 
+
+    public void AbrirTutorial()
+    {
+        HudController.instance.AbrirTutorial();
     }
 }

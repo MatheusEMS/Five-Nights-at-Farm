@@ -15,7 +15,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private List<int> quantasFalhas; //qts de clientes insastafeito pode deixar para passar de fase
     public int clientesAtendidosSatisfeitos = 0;
     public int clientesAtendidosInsatisfeitos = 0;
-    private int fase = 0;
+
+    public int fase = 0;
 
     [SerializeField] private float tempoTelaPreta = 2f;
     private float timer;
@@ -32,13 +33,16 @@ public class GameController : MonoBehaviour
     //pos inicial player
     private Vector3 InitialPos;
 
+    private float timerTutorial = 1;
+
     private enum StateGame
     {
         Intro,
         Prefase, //menu levels ou algo assim
         Jogando,
         Resultados,
-        Pausado
+        Pausado,
+        NoTutorial
     }
     private StateGame estadoJogo = StateGame.Prefase; //jogando no momento para teste
 
@@ -87,7 +91,7 @@ public class GameController : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
 
                 pausa = true;
-                diaTXT.text = "Dia " + (fase + 1);
+                diaTXT.text = "Day " + (fase + 1);
 
                 timer -= Time.deltaTime;
 
@@ -167,6 +171,24 @@ public class GameController : MonoBehaviour
                 }
 
                 break;
+            case StateGame.NoTutorial:
+                pausa = true;
+                Hud.SetActive(false);
+
+
+                if (Input.GetKeyDown(KeyCode.E) && timerTutorial < 0)
+                {
+                    HudController.instance.FecharTutorial();
+                    estadoJogo = StateGame.Jogando;
+                }
+
+                timerTutorial -= Time.deltaTime;
+                break;
+            case StateGame.Pausado:
+                //Se tiver
+                pausa = true;
+
+                break;
             default:
                 // Code to execute if no other case matches
                 break;
@@ -200,7 +222,15 @@ public class GameController : MonoBehaviour
         timer = tempoTelaPreta;
 
         StartCoroutine(ResetPlayerPositionWithDelay());
-        SceneController.instance.LoadScene("SampleScene");
+        if (fase == 5) // ultima fase
+        {
+            SceneController.instance.LoadScene("Final");
+        }
+        else
+        {
+            SceneController.instance.LoadScene("SampleScene");
+        }
+
 
         //estadoJogo = StateGame.Intro;
 
@@ -224,5 +254,19 @@ public class GameController : MonoBehaviour
 
         //GameObject.FindGameObjectWithTag("Player").transform.position = InitialPos;
 
+    }
+
+    public void EntrouTutorial()
+    {
+        if (estadoJogo == StateGame.Jogando)
+        {
+            timerTutorial = 1;
+            estadoJogo = StateGame.NoTutorial;
+        }
+        else
+        {
+            Debug.Log("não está jogando");
+        }
+        
     }
 }

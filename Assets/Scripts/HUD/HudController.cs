@@ -4,6 +4,9 @@ using UnityEngine;
 public class HudController : MonoBehaviour
 {
     public static HudController instance;
+
+    [SerializeField] private GameObject Tutorial;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -34,5 +37,17 @@ public class HudController : MonoBehaviour
     public void DisableInteractionText()
     {
         interactionText.enabled = false;
+    }
+
+
+    public void AbrirTutorial()
+    {
+        Tutorial.SetActive(true);
+        GameController.instance.EntrouTutorial();
+    }
+
+    public void FecharTutorial()
+    {
+        Tutorial.SetActive(false);
     }
 }

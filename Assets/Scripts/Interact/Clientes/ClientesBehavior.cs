@@ -30,11 +30,16 @@ public class ClientesBehavior : MonoBehaviour
 
     private GameObject popupObject;
 
+    public float tempoMinEspera = 35f;
+    public float tempoMaxEspera = 50f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        tempoEspera = Random.Range(30f, 50f);
-        ReceitaPedida = Random.Range(1,3);
+        Debug.Log("Tempo min: " + tempoMinEspera);
+        Debug.Log("Tempo max: " + tempoMaxEspera);
+        tempoEspera = Random.Range(tempoMinEspera, tempoMaxEspera); //tempo que ele vai esperar pela comida
+        ReceitaPedida = Random.Range(1,3); //Qual receita ele vai pedir
     }
 
     // Update is called once per frame
