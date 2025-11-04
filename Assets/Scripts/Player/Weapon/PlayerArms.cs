@@ -106,24 +106,28 @@ public class PlayerArms : MonoBehaviour
                 {
 
                     
-                    if (GlobalAmmo.municaopistolacount > 1)
+                    if (GlobalAmmo.municaopistolacount >= 1)
                     {
                         StartCoroutine(AtirandoPistola());
+                        AtirandoPistola();
                         Debug.Log("atirou");
-                        //GlobalAmmo.municaopistolacount -= 1;
+                        GlobalAmmo.municaopistolacount -= 1;
+                        CanFire = false;
                         audioManager.PlaySFX(audioManager.shoot);
-                        Shoot();
+                      //  Shoot();
                         
-                        //CanFire = false;
+                       
                         
                     }
                     else
                     {
                         Debug.Log("atirou ultima bala");
-                        audioManager.PlaySFX(audioManager.shoot);
-                        GlobalAmmo.municaopistolacount -= 1;
+                        Debug.Log("teste_recarga");
                         StartCoroutine(Recarregar());
                         CanFire = false;
+
+                        audioManager.PlaySFX(audioManager.shoot);
+                        // GlobalAmmo.municaopistolacount -= 1;
                         
 
                     }
@@ -133,34 +137,11 @@ public class PlayerArms : MonoBehaviour
                     if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
                     {
                         //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
-                        //Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
+                        Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
 
-                        decal = oPooler.inst.GetPoolObj();
+                        ///decal = oPooler.inst.GetPoolObj();
                         ///acertar um inimigo
-                        if(hit.transform.gameObject == Ia_cobra  && GlobalAmmo.municaopistolacount > 1)
-                        {
-                            ia_alvo = hit.transform.gameObject;
-                           // alvo = ia_alvo.GetInstanceID();
-                            SistemadeVida vida = GetComponent<SistemadeVida>();
-                            vida.TakeDamage3(damage);
-                        }
-                        else if(hit.transform.gameObject == Ia_onca && GlobalAmmo.municaopistolacount > 1)
-                        {
-                            ia_alvo = hit.transform.gameObject;
-                           // ia_alvo.GetInstanceID();
-                            SistemadeVida vida = GetComponent<SistemadeVida>();
-                            vida.TakeDamage3(damage);
-
-                        }
-                        else if(hit.transform.gameObject == Ia_sarue && GlobalAmmo.municaopistolacount > 1) {
-                           
-                            ia_alvo = hit.transform.gameObject;
-                           // ia_alvo.GetInstanceID();
-                            SistemadeVida vida = GetComponent<SistemadeVida>();
-                            vida.TakeDamage3(damage);
-
-
-                        }
+                       
                        // ia_alvo = null;
 
                         if (decal == null)
@@ -174,10 +155,19 @@ public class PlayerArms : MonoBehaviour
                         if (hit.collider.gameObject.CompareTag("Inimigo"))
                         {
                             SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                            ia_alvo = hit.transform.gameObject;
+                            // alvo = ia_alvo.GetInstanceID();
+                            SistemadeVida vida = GetComponent<SistemadeVida>();
+                            vida.TakeDamage3(damage);
                         }
                         else
                         {
                             FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                            
+                            ia_alvo = hit.transform.gameObject;
+                            // alvo = ia_alvo.GetInstanceID();
+                            SistemadeVida vida = GetComponent<SistemadeVida>();
+                            vida.TakeDamage3(damage);
                         }
 
                     }
@@ -218,22 +208,22 @@ public class PlayerArms : MonoBehaviour
         vfxSangue.transform.position = pos;
         vfxSangue.SendEvent("TiroSangue");
     }
-    
+
     IEnumerator AtirandoPistola()
     {
-        GlobalAmmo.municaopistolacount -= 1;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
+       // GlobalAmmo.municaopistolacount -= 1;
         CanFire = true;
-        
+        Debug.Log("teste");
 
     }
     IEnumerator Recarregar()
     {
 
-       yield return 
-
+        yield return new WaitForSeconds(2);
         CanFire = true;
         GlobalAmmo.municaopistolacount = 8;
+        Debug.Log("teste2");
     }
 
 }

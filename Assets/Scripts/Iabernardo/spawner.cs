@@ -25,6 +25,7 @@ public class spawner : MonoBehaviour
 
     private void Start()
     {
+        Random.InitState(40);
         spawnlist.Add(Ia_sarue);
         spawnlist.Add(Ia_cobra);
         spawnlist.Add(Ia_onca);
@@ -51,9 +52,10 @@ public class spawner : MonoBehaviour
         yield return new WaitForSeconds(timer);
         if (EnemyCount < 20)
         {
-            xPos = Random.Range(-16, 35);
+            
+            xPos = Random.Range(-12, 25);
             xPosF = xPosV + xPos;
-            zPos = Random.Range(-20, 20);
+            zPos = Random.Range(-10, 10);
             zPosF = zPosV + zPos;
             ia = Random.Range(0,spawnlist.Count);
 
