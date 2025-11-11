@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IngredientsController : MonoBehaviour
 {
-    public Transform spawnPointIngrediente, spawnPointIngrediente2, spawnReceita;
+    public Transform spawnReceita;
     private Transform spawnUsado;
     //[SerializeField]
     //private GameObject prefabIngrediente1,prefabIngrediente2;
