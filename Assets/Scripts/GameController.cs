@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
         Pausado,
         NoTutorial
     }
-    private StateGame estadoJogo = StateGame.Prefase; //jogando no momento para teste
+    private StateGame estadoJogo = StateGame.Jogando; //jogando no momento para teste
 
     public bool pausa = true; //pausa jogador,npcs e inimigo, controla qd move
 

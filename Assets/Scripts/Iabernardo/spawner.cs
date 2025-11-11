@@ -11,8 +11,8 @@ public class spawner : MonoBehaviour
     [SerializeField] public GameObject Ia_onca;
     public List<GameObject> spawnlist;
     private int ia;
-    private int xPos;
-    private int zPos;
+    [SerializeField] private int xPos;
+    [SerializeField] private int zPos;
     private int xPosF;
     private int zPosF;
     [SerializeField] public int xPosV;
@@ -25,7 +25,7 @@ public class spawner : MonoBehaviour
 
     private void Start()
     {
-        Random.InitState(40);
+        Random.InitState(60);
         spawnlist.Add(Ia_sarue);
         spawnlist.Add(Ia_cobra);
         spawnlist.Add(Ia_onca);
@@ -38,34 +38,42 @@ public class spawner : MonoBehaviour
         if (spaw == true)
         {
             StartCoroutine(SpawInimigo());
+            surge = false;
         }
-       
-       
 
-      
+     //   xPos = Random.Range(-12, 26);
+      //  xPosF = xPosV + xPos;
+      //  zPos = Random.Range(-10, 12);
+      //  zPosF = zPosV + zPos;
+      //  ia = Random.Range(0, spawnlist.Count);
+
+        
+
     }
 
     IEnumerator SpawInimigo()
     {
+
         spaw = false;
-        
-        yield return new WaitForSeconds(timer);
+
+        yield return new WaitForSeconds(4);
         if (EnemyCount < 20)
         {
-            
-            xPos = Random.Range(-12, 25);
+            xPos = Random.Range(-12, 26);
             xPosF = xPosV + xPos;
-            zPos = Random.Range(-10, 10);
+            zPos = Random.Range(-10, 12);
             zPosF = zPosV + zPos;
-            ia = Random.Range(0,spawnlist.Count);
+            ia = Random.Range(0, spawnlist.Count);
+
 
             EnemyCount++;
 
             Instantiate(spawnlist[ia], new Vector3(xPosF, -4, zPosF), Quaternion.identity);
-            surge = true;
 
+            surge = true;
+            spaw = true;
         }
-        spaw = true;
+        
 
     }
 

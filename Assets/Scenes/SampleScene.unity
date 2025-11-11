@@ -1131,7 +1131,7 @@ MonoBehaviour:
         m_MethodName: reciclar
         m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 3466637824692249114, guid: a1c052b84fb99cd4685c54ceeeea04be, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1151,6 +1151,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2564015098671735921, guid: 9db4861fa3da10747a6f5aa5dfa56d0f, type: 3}
+      propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3466637824692249114, guid: a1c052b84fb99cd4685c54ceeeea04be, type: 3}
     - target: {fileID: 3710548342057947638, guid: 9db4861fa3da10747a6f5aa5dfa56d0f, type: 3}
       propertyPath: m_Name
       value: CupGreen

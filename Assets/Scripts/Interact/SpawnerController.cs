@@ -3,11 +3,13 @@ using UnityEngine;
 public class SpawnerController : MonoBehaviour
 {
 
-    private enum EstadosSpawner
+   [SerializeField] private enum EstadosSpawner
     {
         Habilitado,
         Desabilitado
     }
+    //para debug
+    [SerializeField] private bool check_desabilitado = false; 
 
     private EstadosSpawner estadoSpawner = EstadosSpawner.Habilitado;
 
@@ -42,6 +44,7 @@ public class SpawnerController : MonoBehaviour
 
     public void Desabilitado()
     {
+        check_desabilitado = true;
         //desabilita e seta o timer
         timer = timerHabilitar;
         estadoSpawner = EstadosSpawner.Desabilitado; 
