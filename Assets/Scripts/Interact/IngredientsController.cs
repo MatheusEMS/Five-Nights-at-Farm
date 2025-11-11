@@ -94,6 +94,8 @@ public class IngredientsController : MonoBehaviour
                 estadoAtualPanela = estadosPanela.vazia;
                 qualReceita = 0;
 
+                popupObject.GetComponent<PopUps>().textValue = "";
+
                 //resetando a panela
                 receita[0] = 0;
                 receita[1] = 0;
@@ -122,18 +124,20 @@ public class IngredientsController : MonoBehaviour
                 {
                     //tirar os ingredientes do popup
                     listaIngredPanela.Clear();
-                    popupObject.GetComponent<PopUps>().textValue = "";
+                    popupObject.GetComponent<PopUps>().textValue = "Cooking";
 
                     estadoAtualPanela = estadosPanela.cozinhando;
                     print("cozinhado receita: " + qualReceita);
                     return;
                 }
             }
+            
+            //Não achou receita, fazendo comida duvidosa
 
             //tirar os ingredientes do popup
             listaIngredPanela.Clear();
 
-            popupObject.GetComponent<PopUps>().textValue = "";
+            popupObject.GetComponent<PopUps>().textValue = "Cooking";
 
             estadoAtualPanela = estadosPanela.cozinhando;
             print("cozinhado, mas errou a receita");

@@ -981,6 +981,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+    - target: {fileID: 5469056124424861995, guid: 3c21534f337b82c45aea33c4aaa68b4e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7815353459337743711, guid: 3c21534f337b82c45aea33c4aaa68b4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 287.4481
@@ -2590,7 +2594,7 @@ MonoBehaviour:
   ReceitasParaSpawnar:
   - {fileID: 5096664187693653309, guid: 311c4464ebbea5d4692e56e4d220003c, type: 3}
   - {fileID: 6736916120564579286, guid: e41eec43f3e816044a2dd0bf51feea2a, type: 3}
-  - {fileID: 6736916120564579286, guid: e41eec43f3e816044a2dd0bf51feea2a, type: 3}
+  - {fileID: 6736916120564579286, guid: ac8cc67e753e8204790adc1a0a7baf55, type: 3}
   panela: {fileID: 775786846}
   popUpPrefab: {fileID: 1805584588508341133, guid: b35f42ab351a3784ab0f9c770c35b8ba, type: 3}
 --- !u!1001 &1726649680

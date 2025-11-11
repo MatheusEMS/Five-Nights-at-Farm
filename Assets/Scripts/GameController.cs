@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Image TelaPretaPrefase;
     [SerializeField] private GameObject Hud;
 
-    [SerializeField] private TextMeshProUGUI continuarTentarTXT;
+    //[SerializeField] private TextMeshProUGUI continuarTentarTXT;
 
     //pos inicial player
     private Vector3 InitialPos;
@@ -118,23 +118,26 @@ public class GameController : MonoBehaviour
                     {
                         Debug.Log("Não passou de fase");
 
-                        Resultadotext.text = "Não passou de fase";
-                        continuarTentarTXT.text = "Tentar de Novo";
+                        //Resultadotext.text = "Não passou de fase";
+                        Resultadotext.text = "Tentar de Novo"+ "\n\n" + clientesAtendidosSatisfeitos + "/" + quantClientes[fase] + " Sairam Satisfeitos";
                         estadoJogo = StateGame.Resultados;
                     }
                     else
                     {
                         Debug.Log("Passou de fase");
 
+                        //Resultadotext.text = "Passou de fase";
+                        Resultadotext.text = "Continuar" + "\n\n" + clientesAtendidosSatisfeitos + "/" + quantClientes[fase] + " Sairam Satisfeitos";
+
+                        //passar de fase
                         fase++;
 
-                        Resultadotext.text = "Passou de fase";
-                        continuarTentarTXT.text = "Continuar";
                         estadoJogo = StateGame.Resultados;
                     }
                 }
                 break;
             case StateGame.Resultados:
+                //mostrar tela de resultados de acordo com o desempenho
 
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
@@ -172,6 +175,8 @@ public class GameController : MonoBehaviour
 
                 break;
             case StateGame.NoTutorial:
+                //ao interagir com a placa de intrucoes
+
                 pausa = true;
                 Hud.SetActive(false);
 
