@@ -14,7 +14,7 @@ public class ClientesBehavior : MonoBehaviour
 
     private EstadosCliente estadoCliente = EstadosCliente.Chegando;
 
-    public float speed;
+    [SerializeField] private float speed;
     //[SerializeField] private Transform target;
     //[SerializeField] private Transform targetEnd;
 
@@ -33,13 +33,18 @@ public class ClientesBehavior : MonoBehaviour
     public float tempoMinEspera = 35f;
     public float tempoMaxEspera = 50f;
 
+    private GameObject  PedirPosition, SairPosition;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Debug.Log("Tempo min: " + tempoMinEspera);
         Debug.Log("Tempo max: " + tempoMaxEspera);
         tempoEspera = Random.Range(tempoMinEspera, tempoMaxEspera); //tempo que ele vai esperar pela comida
-        ReceitaPedida = Random.Range(1,3); //Qual receita ele vai pedir
+        ReceitaPedida = Random.Range(1, 3); //Qual receita ele vai pedir
+
+        PedirPosition = GameObject.FindWithTag("PedirCliente");
+        SairPosition = GameObject.FindWithTag("SairCliente");
     }
 
     // Update is called once per frame
@@ -50,14 +55,14 @@ public class ClientesBehavior : MonoBehaviour
             switch (estadoCliente)
             {
                 case EstadosCliente.Chegando:
-                    if (transform.position == new Vector3(5.87f, 2f, 3.44f))
+                    if (transform.position == PedirPosition.transform.position)
                     {
                         estadoCliente = EstadosCliente.Esperando;
                     }
                     else
                     {
                         step = speed * Time.deltaTime;
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(5.87f, 2f, 3.44f), step);
+                        transform.position = Vector3.MoveTowards(transform.position, PedirPosition.transform.position, step);
                     }
                     break;
                 case EstadosCliente.Esperando:
@@ -100,28 +105,28 @@ public class ClientesBehavior : MonoBehaviour
                     //colocar popup dele feliz
 
                     Destroy(popupObject);
-                    if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
+                    if (transform.position == SairPosition.transform.position)
                     {
                         Destroy(gameObject);
                     }
                     else
                     {
                         step = speed * Time.deltaTime;
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.09f, 2f, 12.47f), step);
+                        transform.position = Vector3.MoveTowards(transform.position, SairPosition.transform.position, step);
                     }
                     break;
                 case EstadosCliente.SaindoInsastifeito:
                     //colocar popup dele bravo
 
                     Destroy(popupObject);
-                    if (transform.position == new Vector3(-5.09f, 2f, 12.47f))
+                    if (transform.position == SairPosition.transform.position)
                     {
                         Destroy(gameObject);
                     }
                     else
                     {
                         step = speed * Time.deltaTime;
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.09f, 2f, 12.47f), step);
+                        transform.position = Vector3.MoveTowards(transform.position, SairPosition.transform.position, step);
                     }
                     break;
                 default:

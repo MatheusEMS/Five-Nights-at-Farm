@@ -14,6 +14,8 @@ TagManager:
   - audio
   - dirt
   - hud
+  - PedirCliente
+  - SairCliente
   layers:
   - Default
   - TransparentFX

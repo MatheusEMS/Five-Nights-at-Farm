@@ -35,6 +35,10 @@ public class GameController : MonoBehaviour
 
     private float timerTutorial = 1;
 
+    private float porcentagemRank;
+
+    [SerializeField] private Transform OrankUI;
+
     private enum StateGame
     {
         Intro,
@@ -110,6 +114,23 @@ public class GameController : MonoBehaviour
             case StateGame.Jogando:
                 Hud.SetActive(true);
                 pausa = false;
+
+                //calcular rank
+                porcentagemRank = (clientesAtendidosSatisfeitos * 100) / quantClientes[fase];
+
+
+                for (int i = 0; i < OrankUI.childCount; i++) {
+                    Transform childT = OrankUI.GetChild(i);
+                    if (porcentagemRank >= 20 * (i+1))
+                    {
+                        GameObject childGO = childT.gameObject;
+                        if (!childGO.activeSelf)
+                        {
+                            Debug.Log(childGO.name);
+                            childGO.SetActive(true);
+                        }                   
+                    }
+                }
 
                 if (clientesAtendidosSatisfeitos + clientesAtendidosInsatisfeitos == quantClientes[fase])
                 {
@@ -206,7 +227,8 @@ public class GameController : MonoBehaviour
         GUILayout.Label("\n" + string.Join("\n", "Clientes satisfeitos " + clientesAtendidosSatisfeitos,
         "Clientes Insatisfeitos " + clientesAtendidosInsatisfeitos,
         "fase: " + fase,
-        "Estado: " + estadoJogo));
+        "Estado: " + estadoJogo,
+        "Porcentagem: " + porcentagemRank));
         GUILayout.EndArea();
     }
 

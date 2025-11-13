@@ -117,8 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49872e11397c08945a5d73c6f2514c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 8
   popUpPrefab: {fileID: 1805584588508341133, guid: b35f42ab351a3784ab0f9c770c35b8ba, type: 3}
+  tempoMinEspera: 35
+  tempoMaxEspera: 50
 --- !u!114 &3211362987108443033
 MonoBehaviour:
   m_ObjectHideFlags: 0
