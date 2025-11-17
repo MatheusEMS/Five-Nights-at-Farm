@@ -14,13 +14,14 @@ public class NewAiMove : MonoBehaviour
     {
 
         agent = GetComponent<NavMeshAgent>();
-
+         Transform meuTransform = GameObject.FindWithTag("Player").transform;
+        playerTransform = meuTransform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(playerTransform, Vector3.up);
+        transform.LookAt(playerTransform.transform, Vector3.up);
         timer -= Time.deltaTime;
         if (timer < 0.0f)
         {

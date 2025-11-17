@@ -27,7 +27,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out hit, playerReach))
         {
             
-            if (hit.collider.tag == "Interactable")
+            if (hit.collider.tag == "Interactable" || hit.collider.tag == "Geradores")
             {
                 Interactable newInteractable = hit.collider.GetComponent<Interactable>();
 

@@ -9,7 +9,7 @@ public class SistemadeVida : MonoBehaviour
 
     [SerializeField] private bool player1;
     [SerializeField] private float health;
-
+    [SerializeField] private float resistence = 90;
 
 
     public void Update()
@@ -26,16 +26,19 @@ public class SistemadeVida : MonoBehaviour
 
 
         }
-
+        resistence--;
     }
 
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-       // Debug.Log(health);
-        
-        StartCoroutine(debuff_o());
+        // Debug.Log(health);
+        if (resistence <= 0)
+        {
+            StartCoroutine(debuff_o());
+            resistence = 90;
+        }
     }
     public void TakeDamage2(float damage)
     {

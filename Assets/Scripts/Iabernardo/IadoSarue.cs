@@ -8,12 +8,12 @@ public class IadoSarue : MonoBehaviour
 {
 
    
-    public List<GameObject> pontos_de_comida;
-    [SerializeField] public GameObject gerador_1;
-    [SerializeField] public GameObject gerador_2;
+    public GameObject[] pontos_de_comida;
+    [SerializeField] public Transform gerador_1;
+    [SerializeField] public Transform gerador_2;
     [SerializeField] public float maxTime = 1.0f;
     [SerializeField] public float maxDistance = 5.0f;
-
+    private GameObject cobra_alvo;
     public Transform IaTransform;
     public Transform fugapoint;
     private bool fuga = false;
@@ -26,16 +26,22 @@ public class IadoSarue : MonoBehaviour
 
     public float timer = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+
     void Start()
     {
         p_a = 0;
-      
+        timer_2 = 0;
         agent = GetComponent<NavMeshAgent>();
         fuga = false;
         Random.InitState(2);
-        pontos_de_comida.Add(gerador_1);
-        pontos_de_comida.Add(gerador_2);
-        
+        //pegando todos os pontos de comida 
+        pontos_de_comida = GameObject.FindGameObjectsWithTag("Geradores");
+
+        cobra_alvo = GameObject.FindGameObjectWithTag("Cobra");
+
+
         escolher = true;
     }
 
@@ -43,33 +49,38 @@ public class IadoSarue : MonoBehaviour
     void Update()
     {
 
-        if(p_a < 50)
+        cobra_alvo = GameObject.FindGameObjectWithTag("Cobra");
+        timer_2++;
+        //simplificar em 2 alvos de geradores de ingredientes
+        if (p_a < 50)
         {
 
-            p_aV = 2;
+            p_aV = 0;
 
         }else if(p_a > 50)
-        {
+         {
 
-            p_aV = 1;
+           p_aV = 1;
 
 
-        }
+         }
         timer -= Time.deltaTime;
+        ////escolhendo um numero aleatorio para escolher o gerador alvo
         if (escolher)
         {
             p_a = Random.Range(0, 100);
            
-            timer_2++;
-            if (timer_2 >= 80)
+            
+            if (timer_2 >= 150)
             {
-                
+                p_a = Random.Range(0, 100);
                 escolher = false;
-
+                timer_2 = 0 ;
             }
 
         }
-        if (timer < 0.0f && fuga == false)
+        //se nã oestiver fugindo va até o gerador
+        if (timer < 0.0f && fuga == false && cobra_alvo == null)
         {
             float sqDistance = (pontos_de_comida[p_aV].transform.position - agent.destination).sqrMagnitude;
             if (sqDistance > maxDistance)
@@ -80,6 +91,8 @@ public class IadoSarue : MonoBehaviour
         }
 
         //timer -= Time.deltaTime;
+
+        //se ja sabototou um gerador fuja
         if (timer < 0.0f && fuga == true)
         {
             float sqDistance = (fugapoint.position - agent.destination).sqrMagnitude;
@@ -90,13 +103,24 @@ public class IadoSarue : MonoBehaviour
             }
             
         }
+        if (cobra_alvo && fuga == false)
+        {
+
+            float sqDistance = (cobra_alvo.transform.position - agent.destination).sqrMagnitude;
+            if (sqDistance > maxDistance)
+            {
+                agent.destination = cobra_alvo.transform.position;
+            }
+            timer = maxTime;
+
+        }
 
     }
     public void OnTriggerEnter(Collider other)
     {
 
 
-        if (other.CompareTag("Interactable"))
+        if (other.CompareTag("Geradores") || other.CompareTag("Cobra"))
         {
 
 
@@ -112,6 +136,8 @@ public class IadoSarue : MonoBehaviour
 
         }
 
+        
+
 
 
         SpawnerController geradordecomida =  other.GetComponent<SpawnerController>();
@@ -124,4 +150,5 @@ public class IadoSarue : MonoBehaviour
 
 
     }
+
 }

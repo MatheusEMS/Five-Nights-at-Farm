@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 8030101928007162252}
   m_Layer: 6
   m_Name: "On\xE7a_AI"
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a15103eaa065f040992bee6f3c2a0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 3866590680825014886, guid: d9b7e1777413fbb448966d26a4b85f92, type: 3}
+  playerTransform: {fileID: 0}
   maxTime: 0.5
   maxDistance: 1.2
   IaTransform: {fileID: 1494039451422039276}

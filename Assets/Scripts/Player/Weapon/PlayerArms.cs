@@ -152,12 +152,15 @@ public class PlayerArms : MonoBehaviour
                         decal.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f);
                         decal.SetActive(true);
 
-                        if (hit.collider.gameObject.CompareTag("Inimigo"))
+                        if (hit.collider.gameObject.CompareTag("Inimigo") || hit.collider.gameObject.CompareTag("Cobra"))
                         {
                             SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
                             ia_alvo = hit.transform.gameObject;
                             // alvo = ia_alvo.GetInstanceID();
-                            SistemadeVida vida = GetComponent<SistemadeVida>();
+                            SistemadeVida vida = ia_alvo.GetComponent<SistemadeVida>();
+
+                            Debug.Log("acertou? " + ia_alvo);
+
                             vida.TakeDamage3(damage);
                         }
                         else
