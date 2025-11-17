@@ -40,6 +40,13 @@ public class IngredientsController : MonoBehaviour
 
     private GameObject popupObject;
 
+
+    /// PARTICULAS FUMACA
+    [Header("------- Particle References -------")]
+    [SerializeField] private ParticleSystem fumacaParticle;
+    [SerializeField] private Transform fumacaLocation;
+    private ParticleSystem fumacaParticleInstance;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -116,6 +123,8 @@ public class IngredientsController : MonoBehaviour
         if (estadoAtualPanela == estadosPanela.disponivel || estadoAtualPanela == estadosPanela.cheia) // ver se vai ser assim
         {
             print("Ligou a panela " + receitasProntas.Count);
+
+            CreateFumaca();
 
             for(var i = 0;i < receitasProntas.Count - 1;i += 2)
             {
@@ -258,5 +267,10 @@ public class IngredientsController : MonoBehaviour
         {
             Debug.Log("não está segurando Ingrediente");
         }
+    }
+
+    private void CreateFumaca()
+    {
+        fumacaParticleInstance = Instantiate(fumacaParticle, fumacaLocation.position,Quaternion.Euler(-90f, 0, 0));
     }
 }

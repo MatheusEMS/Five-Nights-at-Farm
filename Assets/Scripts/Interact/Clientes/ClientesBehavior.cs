@@ -180,6 +180,7 @@ public class ClientesBehavior : MonoBehaviour
             estadoCliente = EstadosCliente.SaindoInsastifeito;
             GameController.instance.clientesAtendidosInsatisfeitos++;
             Destroy(GameObject.FindWithTag("segurando"));
+            IngredientsController.Instance.arma.SetActive(true);
             Debug.Log("Perdeu reputa��o 2");
         }
     }

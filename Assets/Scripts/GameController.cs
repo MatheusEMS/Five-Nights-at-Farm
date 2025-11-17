@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -205,6 +206,7 @@ public class GameController : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E) && timerTutorial < 0)
                 {
+                    despausaParticula();
                     HudController.instance.FecharTutorial();
                     estadoJogo = StateGame.Jogando;
                 }
@@ -231,6 +233,40 @@ public class GameController : MonoBehaviour
         "Estado: " + estadoJogo,
         "Porcentagem: " + porcentagemRank));
         GUILayout.EndArea();
+    }
+
+    private void pausaParticulas()
+    {
+        GameObject[] particulas = GameObject.FindGameObjectsWithTag("Particulas");
+
+        Debug.Log("qtd particulas: "+ particulas.Length);
+
+        for(var i = 0;i < particulas.Length;i ++)
+        {
+            ParticleSystem particle = particulas[i].GetComponent<ParticleSystem>();
+
+            if (particle != null)
+            {
+                particle.Pause();
+            }
+        }
+    }
+
+    private void despausaParticula()
+    {
+         GameObject[] particulas = GameObject.FindGameObjectsWithTag("Particulas");
+
+        Debug.Log("qtd particulas: "+ particulas.Length);
+
+        for(var i = 0;i < particulas.Length;i ++)
+        {
+            ParticleSystem particle = particulas[i].GetComponent<ParticleSystem>();
+
+            if (particle != null)
+            {
+                particle.Play();
+            }
+        }
     }
 
 
@@ -297,6 +333,7 @@ public class GameController : MonoBehaviour
     {
         if (estadoJogo == StateGame.Jogando)
         {
+            pausaParticulas();
             timerTutorial = 1;
             estadoJogo = StateGame.NoTutorial;
         }

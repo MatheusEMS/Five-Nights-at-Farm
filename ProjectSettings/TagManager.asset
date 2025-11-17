@@ -16,6 +16,7 @@ TagManager:
   - hud
   - PedirCliente
   - SairCliente
+  - Particulas
   layers:
   - Default
   - TransparentFX
