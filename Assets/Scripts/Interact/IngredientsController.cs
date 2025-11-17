@@ -67,7 +67,7 @@ public class IngredientsController : MonoBehaviour
         countDown = tempoCozinhar;
 
 
-        popupObject = Instantiate(popUpPrefab, new Vector3(panela.transform.position.x, panela.transform.position.y + 1, panela.transform.position.z), new Quaternion());
+        popupObject = Instantiate(popUpPrefab, new Vector3(panela.transform.position.x, panela.transform.position.y + 0.7f, panela.transform.position.z), new Quaternion());
         popupObject.GetComponent<PopUps>().timer = countDown;
 
         listaIngredPanela = new List<string>()

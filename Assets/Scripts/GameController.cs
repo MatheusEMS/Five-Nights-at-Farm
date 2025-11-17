@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI diaTXT;
     [SerializeField] private Image TelaPretaPrefase;
     [SerializeField] private GameObject Hud;
+    [SerializeField] private Transform OrankUI;
 
     //[SerializeField] private TextMeshProUGUI continuarTentarTXT;
 
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
 
     private float porcentagemRank;
 
-    [SerializeField] private Transform OrankUI;
+
 
     private enum StateGame
     {
@@ -248,14 +249,14 @@ public class GameController : MonoBehaviour
 
         timer = tempoTelaPreta;
 
-        StartCoroutine(ResetPlayerPositionWithDelay());
+        StartCoroutine(ResetVariables());
         if (fase == 5) // ultima fase
         {
             SceneController.instance.LoadScene("Final");
         }
         else
         {
-            SceneController.instance.LoadScene("SampleScene");
+            SceneController.instance.LoadScene("FaseScene");
         }
 
 
@@ -268,7 +269,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    IEnumerator ResetPlayerPositionWithDelay()
+    IEnumerator ResetVariables()
     {
         // Espera o tempo especificado
         yield return new WaitForSeconds(2f);
@@ -278,6 +279,15 @@ public class GameController : MonoBehaviour
         var tempColor = TelaPretaPrefase.color;
         tempColor.a = 1f;
         TelaPretaPrefase.color = tempColor;
+
+        for (int i = 0; i < OrankUI.childCount; i++) {
+            Transform childT = OrankUI.GetChild(i);
+
+            GameObject childGO = childT.gameObject;
+
+            childGO.SetActive(false);
+                  
+        }
 
         //GameObject.FindGameObjectWithTag("Player").transform.position = InitialPos;
 
