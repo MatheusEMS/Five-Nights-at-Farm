@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
@@ -35,6 +36,35 @@ public class ClientesBehavior : MonoBehaviour
 
     private GameObject  PedirPosition, SairPosition;
 
+
+    [Header("------- Cliente caracteristicas References -------")]
+    [SerializeField] private List<GameObject> Olhos; 
+    [SerializeField] private List<GameObject> Nariz;
+    [SerializeField] private List<GameObject> Boca;
+    [SerializeField] private List<GameObject> Cabelo;
+
+    private int qualAparencia = 0;
+
+
+    private void Awake()
+    {
+        Debug.Log("olhos disponiveis: " + Olhos.Count);
+
+        //Decidir aparencia
+        qualAparencia = Random.Range(0, Olhos.Count);
+        Olhos[qualAparencia].SetActive(true);
+
+        qualAparencia = Random.Range(0, Nariz.Count);
+        Nariz[qualAparencia].SetActive(true);
+
+        qualAparencia = Random.Range(0, Boca.Count);
+        Boca[qualAparencia].SetActive(true);
+
+        qualAparencia = Random.Range(0, Cabelo.Count);
+        Cabelo[qualAparencia].SetActive(true);
+    }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -70,12 +100,12 @@ public class ClientesBehavior : MonoBehaviour
 
                     if (checkPopup == false)
                     {
-                        popupObject = Instantiate(popUpPrefab, new Vector3(transform.localPosition.x, gameObject.transform.position.y + 2, transform.localPosition.z), new Quaternion());
+                        popupObject = Instantiate(popUpPrefab, new Vector3(transform.localPosition.x, gameObject.transform.position.y + 2.1f, transform.localPosition.z), new Quaternion());
                         //o que será mostrado em cada receita
                         switch(ReceitaPedida)
                         {
                             case 1:
-                                popupObject.GetComponent<PopUps>().textValue = "2 Bananas\n1 Bola\n";
+                                popupObject.GetComponent<PopUps>().textValue = "2 Bananas\n1 Tomate\n";
                                 break;
 
                             case 2:

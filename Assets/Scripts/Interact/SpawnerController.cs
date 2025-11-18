@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
@@ -19,6 +20,8 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] private float timerHabilitar = 5;
     private float timer;
 
+    [SerializeField] private GameObject erro;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,9 +36,11 @@ public class SpawnerController : MonoBehaviour
         //contagem para voltar a ser habilitado
         if (estadoSpawner == EstadosSpawner.Desabilitado)
         {
+            erro.SetActive(true);
             timer -= Time.deltaTime;
             if (timer < 0)
             {
+                erro.SetActive(false);
                 //Debug.Log("Habilitou de novo");
                 estadoSpawner = EstadosSpawner.Habilitado; 
             }
@@ -64,7 +69,7 @@ public class SpawnerController : MonoBehaviour
 
                 Instantiate(ingrediente, new Vector3(spawnPointIngrediente.transform.position.x,
                 spawnPointIngrediente.transform.position.y,
-                spawnPointIngrediente.transform.position.z), Quaternion.identity);
+                spawnPointIngrediente.transform.position.z), Quaternion.Euler(-90,0,0));
             }
         } else
         {

@@ -54,6 +54,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Panela
+    uniqueID: 3410038863
+    locked: 0
+  - name: Clientes
+    uniqueID: 4245372099
+    locked: 0
+  - name: ClienteRosto
+    uniqueID: 2686292853
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

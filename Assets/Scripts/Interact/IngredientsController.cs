@@ -169,10 +169,10 @@ public class IngredientsController : MonoBehaviour
                     receita[0]++;
                     listaIngredPanela.Add("Banana");
                 }
-                else if (GameObject.FindWithTag("segurando").name == "Ingrediente2(Clone)")
+                else if (GameObject.FindWithTag("segurando").name == "Tomate(Clone)")
                 {
                     receita[1]++;
-                    listaIngredPanela.Add("Ingrediente2");
+                    listaIngredPanela.Add("Tomate");
                 }
 
                 Debug.Log("O QUE TEM NA PANELA: " + string.Join(", ", listaIngredPanela));
