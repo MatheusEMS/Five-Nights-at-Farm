@@ -27,6 +27,8 @@ public class spawner : MonoBehaviour
     [SerializeField] private bool surge = false;
     [SerializeField] public int EnemyCount;
 
+    private bool checkState = false;
+
 
     
 
@@ -45,10 +47,11 @@ public class spawner : MonoBehaviour
         // StartCoroutine(SpawnEnemies());
         ///se ja spawnou um inimigo comece a spawnar outro
 
-         
+        checkState = GameController.instance.CheckEstado();
 
        
-            if (spaw == true || surge == true)
+       Debug.Log("estado jogo: "+ checkState);
+            if ((spaw == true || surge == true) && checkState == true)
             {
                 StartCoroutine(SpawInimigo());
 
@@ -82,6 +85,8 @@ public class spawner : MonoBehaviour
            
 
             EnemyCount++;
+
+            Debug.Log("Spawnou");
 
             Instantiate(spawnlist[ia], new Vector3(xPosF, -4, zPosF), Quaternion.identity);
 

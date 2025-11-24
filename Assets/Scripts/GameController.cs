@@ -98,6 +98,7 @@ public class GameController : MonoBehaviour
                 
 
                 pausa = true;
+                if (fase > 4)
                 diaTXT.text = "Day " + (fase + 1);
 
                 timer -= Time.deltaTime;
@@ -316,7 +317,13 @@ public class GameController : MonoBehaviour
     {
         // Espera o tempo especificado
         yield return new WaitForSeconds(2f);
-        estadoJogo = StateGame.Prefase;
+        if (fase > 4)
+        {
+            estadoJogo = StateGame.Intro;
+        }else
+        {
+            estadoJogo = StateGame.Prefase;
+        }
         diaTXT.alpha = 1;
 
         var tempColor = TelaPretaPrefase.color;
