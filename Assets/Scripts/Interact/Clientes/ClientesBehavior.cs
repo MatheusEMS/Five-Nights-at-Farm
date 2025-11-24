@@ -31,8 +31,8 @@ public class ClientesBehavior : MonoBehaviour
 
     private GameObject popupObject;
 
-    public float tempoMinEspera = 35f;
-    public float tempoMaxEspera = 50f;
+    public float tempoMinEspera = 50f;
+    public float tempoMaxEspera = 65f;
 
     private GameObject  PedirPosition, SairPosition;
 

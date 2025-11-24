@@ -297,8 +297,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   popUpPrefab: {fileID: 1805584588508341133, guid: b35f42ab351a3784ab0f9c770c35b8ba, type: 3}
-  tempoMinEspera: 35
-  tempoMaxEspera: 50
+  tempoMinEspera: 50
+  tempoMaxEspera: 65
   Olhos:
   - {fileID: 2807723905056297330}
   - {fileID: 4361612760416012536}

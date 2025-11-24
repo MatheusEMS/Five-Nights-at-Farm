@@ -10,6 +10,9 @@ public class ClientesController : MonoBehaviour
 
     private ClientesBehavior clientesBehavior;
 
+    public float tempoMinEspera = 50f;
+    public float tempoMaxEspera = 65f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,8 +20,8 @@ public class ClientesController : MonoBehaviour
 
         clientesBehavior = novoCliente.GetComponent<ClientesBehavior>();
 
-        clientesBehavior.tempoMinEspera = 35f - 3 * GameController.instance.fase;
-        clientesBehavior.tempoMaxEspera = 50f - 4 * GameController.instance.fase;
+        clientesBehavior.tempoMinEspera = tempoMinEspera - 3 * GameController.instance.fase;
+        clientesBehavior.tempoMaxEspera = tempoMaxEspera - 4 * GameController.instance.fase;
     }
 
     // Update is called once per frame
