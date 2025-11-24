@@ -41,7 +41,10 @@ public class GameController : MonoBehaviour
 
 
 
-    private enum StateGame
+
+    [SerializeField]
+    
+    public enum StateGame  
     {
         Intro,
         Prefase, //menu levels ou algo assim
@@ -50,7 +53,7 @@ public class GameController : MonoBehaviour
         Pausado,
         NoTutorial
     }
-    private StateGame estadoJogo = StateGame.Prefase; //jogando no momento para teste
+    public StateGame estadoJogo = StateGame.Jogando; //jogando no momento para teste
 
     public bool pausa = true; //pausa jogador,npcs e inimigo, controla qd move
 
@@ -78,13 +81,14 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        StateGame estadoJogo = StateGame.Jogando;
         switch (estadoJogo)
         {
             case StateGame.Intro:
                 pausa = true;
                 Hud.SetActive(false);
                 TelaResultados.SetActive(false);
-
+                GetComponent<spawner>().enabled = false;
                 //intro
 
                 break;
@@ -95,6 +99,9 @@ public class GameController : MonoBehaviour
                 TelaResultados.SetActive(false);
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                GetComponent<spawner>().enabled = false;
+                
+                
 
                 pausa = true;
                 diaTXT.text = "Day " + (fase + 1);
@@ -116,7 +123,7 @@ public class GameController : MonoBehaviour
             case StateGame.Jogando:
                 Hud.SetActive(true);
                 pausa = false;
-
+                GetComponent<spawner>().enabled = true;
                 //calcular rank
                 porcentagemRank = (clientesAtendidosSatisfeitos * 100) / quantClientes[fase];
 
@@ -161,7 +168,7 @@ public class GameController : MonoBehaviour
                 break;
             case StateGame.Resultados:
                 //mostrar tela de resultados de acordo com o desempenho
-
+                GetComponent<spawner>().enabled = false;
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
                     //Parar musica
@@ -199,7 +206,7 @@ public class GameController : MonoBehaviour
                 break;
             case StateGame.NoTutorial:
                 //ao interagir com a placa de intrucoes
-
+                GetComponent<spawner>().enabled = false;
                 pausa = true;
                 Hud.SetActive(false);
 
@@ -216,7 +223,7 @@ public class GameController : MonoBehaviour
             case StateGame.Pausado:
                 //Se tiver
                 pausa = true;
-
+                GetComponent<spawner>().enabled = false;
                 break;
             default:
                 // Code to execute if no other case matches

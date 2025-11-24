@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static GameController;
 
 public class spawner : MonoBehaviour
 {
@@ -26,6 +28,8 @@ public class spawner : MonoBehaviour
     [SerializeField] public int EnemyCount;
 
 
+    
+
     private void Start()
     {
         //randomizar seed e inimigos dentro da list
@@ -35,17 +39,21 @@ public class spawner : MonoBehaviour
         spawnlist.Add(Ia_onca);
     }
 
-
+   
     private void Update()
     {
         // StartCoroutine(SpawnEnemies());
         ///se ja spawnou um inimigo comece a spawnar outro
-        if (spaw == true || surge == true)
-        {
-            StartCoroutine(SpawInimigo());
-            
-        }
 
+         
+
+       
+            if (spaw == true || surge == true)
+            {
+                StartCoroutine(SpawInimigo());
+
+            }
+        
      //   xPos = Random.Range(-12, 26);
       //  xPosF = xPosV + xPos;
       //  zPos = Random.Range(-10, 12);
@@ -66,9 +74,9 @@ public class spawner : MonoBehaviour
         if (EnemyCount < 20)
         {
             spaw = true;
-            xPos = Random.Range(-12, 26);
+            xPos = Random.Range(-24, 24);
             xPosF = xPosV + xPos;
-            zPos = Random.Range(-10, 12);
+            zPos = Random.Range(-24, 24);
             zPosF = zPosV + zPos;
             ia = Random.Range(0, 4);
            

@@ -52,7 +52,7 @@ MonoBehaviour:
   zPos: 0
   xPosV: 0
   zPosV: 0
-  timer: 2
+  timer: 1
   spaw: 1
   surge: 0
   EnemyCount: 0

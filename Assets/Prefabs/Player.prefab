@@ -659,7 +659,6 @@ GameObject:
   - component: {fileID: 8727070881945618092}
   - component: {fileID: 5654048581798788076}
   - component: {fileID: 9018495919289903911}
-  - component: {fileID: 7600160696307654256}
   - component: {fileID: 8524990057815876129}
   m_Layer: 0
   m_Name: Player
@@ -754,7 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fac530d7e50e94fb200f0acd7c1afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 3.5
+  MaxSpeed: 5.5
   Acceleration: 15
   ataque_da_onca: 0
   MoveInput: {x: 0, y: 0}
@@ -806,20 +805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: 0
   health: 20
---- !u!114 &7600160696307654256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8862585102087678910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68563fad721deb8489fc66509e2b31eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1: 1
-  health: 20
+  resistence: 90
 --- !u!54 &8524990057815876129
 Rigidbody:
   m_ObjectHideFlags: 0

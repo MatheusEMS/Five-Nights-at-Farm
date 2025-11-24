@@ -125,7 +125,11 @@ public class IadoSarue : MonoBehaviour
 
 
             fuga = true;
+            if (other.CompareTag("Cobra"))
+            {
+                Destroy(other.transform.gameObject);
 
+            }
 
         }
         else if (other.CompareTag("fugapoint"))
