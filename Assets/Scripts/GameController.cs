@@ -94,11 +94,10 @@ public class GameController : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 //GetComponent<spawner>().enabled = false;
-                
-                
+
 
                 pausa = true;
-                if (fase > 4)
+                
                 diaTXT.text = "Day " + (fase + 1);
 
                 timer -= Time.deltaTime;

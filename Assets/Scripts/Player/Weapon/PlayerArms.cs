@@ -137,7 +137,7 @@ public class PlayerArms : MonoBehaviour
                     if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
                     {
                         //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
-                        Instantiate(decal, new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f), Quaternion.identity);
+                        Instantiate(decal, new Vector3(hit.point.x, hit.point.y - 0.01f, hit.point.z - 0.01f), Quaternion.Euler(new Vector3(-90, 0, 0)));
 
                         ///decal = oPooler.inst.GetPoolObj();
                         ///acertar um inimigo
@@ -154,7 +154,7 @@ public class PlayerArms : MonoBehaviour
 
                         if (hit.collider.gameObject.CompareTag("Inimigo") || hit.collider.gameObject.CompareTag("Cobra"))
                         {
-                            SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                            //SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
                             ia_alvo = hit.transform.gameObject;
                             // alvo = ia_alvo.GetInstanceID();
                             SistemadeVida vida = ia_alvo.GetComponent<SistemadeVida>();
@@ -165,7 +165,7 @@ public class PlayerArms : MonoBehaviour
                         }
                         else
                         {
-                            FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
+                            //FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
                             
                             ia_alvo = hit.transform.gameObject;
                             // alvo = ia_alvo.GetInstanceID();

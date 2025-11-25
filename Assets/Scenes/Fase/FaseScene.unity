@@ -9801,7 +9801,7 @@ PrefabInstance:
       objectReference: {fileID: 783156077}
     - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
       propertyPath: fase
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
       propertyPath: diaTXT
