@@ -122,6 +122,7 @@ public class FPcontroller : MonoBehaviour
 
         //looking left and right
         transform.Rotate(Vector3.up * input.x);
+
     }
 
    

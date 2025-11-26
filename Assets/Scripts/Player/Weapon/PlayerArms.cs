@@ -15,7 +15,7 @@ public class PlayerArms : MonoBehaviour
     [SerializeField] float acceleration = 4;
 
     //capsulas saindo da arma
-    [SerializeField] private Transform posEject;
+    //[SerializeField] private Transform posEject;
     //tiro
     [SerializeField] private Transform posTiro;
 
@@ -41,6 +41,7 @@ public class PlayerArms : MonoBehaviour
     public GameObject ia_alvo;
     public GameObject alvo;
     [SerializeField] private float damage;
+
     //pega o audioManager
     private void Awake()
     {
@@ -49,8 +50,8 @@ public class PlayerArms : MonoBehaviour
 
     public void Eject(GameObject prefab)
     {
-        var projectObj = Instantiate(prefab, posEject.position, Quaternion.identity);
-        projectObj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0.1f, 0.1f, 0.1f), ForceMode.Impulse);
+        //var projectObj = Instantiate(prefab, posEject.position, Quaternion.identity);
+        //projectObj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0.1f, 0.1f, 0.1f), ForceMode.Impulse);
     }
 
 
@@ -94,10 +95,10 @@ public class PlayerArms : MonoBehaviour
 
             curSpeed = Mathf.MoveTowards(curSpeed, targetSpeed, Time.deltaTime * acceleration);
 
-            //animBracos.SetFloat("curSpeed", curSpeed);
+            animBracos.SetFloat("curSpeed", curSpeed);
 
             //se tiver mira, adicionar aiming no animator
-            aiming = Input.GetKey(KeyCode.Mouse1);
+            //aiming = Input.GetKey(KeyCode.Mouse1);
             //animBracos.SetFloat("aiming", aiming);
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -113,6 +114,10 @@ public class PlayerArms : MonoBehaviour
                         Debug.Log("atirou");
                         GlobalAmmo.municaopistolacount -= 1;
                         CanFire = false;
+
+                        //animacao
+                        animBracos.CrossFade("PistolShoot", 0.02f, 0, 0);
+
                         audioManager.PlaySFX(audioManager.shoot);
                       //  Shoot();
                         
@@ -138,6 +143,7 @@ public class PlayerArms : MonoBehaviour
                     {
                         //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
                         Instantiate(decal, new Vector3(hit.point.x, hit.point.y - 0.01f, hit.point.z - 0.01f), Quaternion.Euler(new Vector3(-90, 0, 0)));
+
 
                         ///decal = oPooler.inst.GetPoolObj();
                         ///acertar um inimigo
@@ -167,10 +173,13 @@ public class PlayerArms : MonoBehaviour
                         {
                             //FumacaVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
                             
-                            ia_alvo = hit.transform.gameObject;
+                            //n sei o que esse else faz, ve ai bernado
+
+
+                            //ia_alvo = hit.transform.gameObject;
                             // alvo = ia_alvo.GetInstanceID();
-                            SistemadeVida vida = GetComponent<SistemadeVida>();
-                            vida.TakeDamage3(damage);
+                            //SistemadeVida vida = ia_alvo.GetComponent<SistemadeVida>();
+                            //vida.TakeDamage3(damage);
                         }
 
                     }
@@ -217,7 +226,8 @@ public class PlayerArms : MonoBehaviour
         yield return new WaitForSeconds(1);
        // GlobalAmmo.municaopistolacount -= 1;
         CanFire = true;
-        Debug.Log("teste");
+
+        //Debug.Log("teste");
 
     }
     IEnumerator Recarregar()

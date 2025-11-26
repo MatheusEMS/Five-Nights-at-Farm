@@ -7028,6 +7028,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7982499404433137890, guid: 8fed5e69976605943a067b46855f68af, type: 3}
   m_PrefabInstance: {fileID: 448303710}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &450571812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8862585102087678910, guid: d9b7e1777413fbb448966d26a4b85f92, type: 3}
+  m_PrefabInstance: {fileID: 1686828534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &451568614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8130,6 +8135,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7195159858157873276, guid: 6d0684c8e8ca3ae47a8a3c48c93bd10c, type: 3}
   m_PrefabInstance: {fileID: 733905334}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &764603155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1417696905626381420, guid: d9b7e1777413fbb448966d26a4b85f92, type: 3}
+  m_PrefabInstance: {fileID: 1686828534}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &765054237
 PrefabInstance:
@@ -17141,6 +17151,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2387548658738066437, guid: d9b7e1777413fbb448966d26a4b85f92, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 764603155}
+    - target: {fileID: 2387548658738066437, guid: d9b7e1777413fbb448966d26a4b85f92, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 450571812}
     - target: {fileID: 2387548658738066437, guid: d9b7e1777413fbb448966d26a4b85f92, type: 3}
       propertyPath: vfxFumaca
       value: 
