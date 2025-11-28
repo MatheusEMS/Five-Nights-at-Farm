@@ -163,7 +163,8 @@ public class PlayerArms : MonoBehaviour
                             decal.SetActive(true);
                         }
 
-                        if (hit.collider.gameObject.CompareTag("Inimigo") || hit.collider.gameObject.CompareTag("Cobra"))
+                        if (hit.collider.gameObject.CompareTag("Inimigo") || hit.collider.gameObject.CompareTag("Cobra")
+                        && recarrengando == false)
                         {
                             //SangueVFX(new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f));
                             ia_alvo = hit.transform.gameObject;
