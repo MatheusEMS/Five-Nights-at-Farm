@@ -93,6 +93,8 @@ public class GameController : MonoBehaviour
                 TelaResultados.SetActive(false);
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+
+                GlobalAmmo.municaopistolacount = 8;
                 //GetComponent<spawner>().enabled = false;
 
 

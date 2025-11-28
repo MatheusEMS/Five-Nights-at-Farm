@@ -310,3 +310,4 @@ MonoBehaviour:
   shoot: {fileID: 8300000, guid: 278759350e1ad6542ad98ff70df39b31, type: 3}
   pickup: {fileID: 8300000, guid: 2e68f6b6e4b3e7247adc2703a5696b7f, type: 3}
   splash: {fileID: 8300000, guid: cc99f5813f91d7549ab2b7c2845a2b60, type: 3}
+  efeitoCobra: {fileID: 8300000, guid: 8b8b9cb3a20ba9b4d8090531b7561e14, type: 3}

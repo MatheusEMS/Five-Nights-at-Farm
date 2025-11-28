@@ -9846,6 +9846,38 @@ PrefabInstance:
       propertyPath: 'quantClientes.Array.data[0]'
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantClientes.Array.data[1]'
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantClientes.Array.data[2]'
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantClientes.Array.data[3]'
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantClientes.Array.data[4]'
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantasFalhas.Array.data[1]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantasFalhas.Array.data[2]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantasFalhas.Array.data[3]'
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619725572591574395, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
+      propertyPath: 'quantasFalhas.Array.data[4]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7279958246122690310, guid: 39e719d44a5e6e948bea15df3ca1639a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.16454
