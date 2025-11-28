@@ -40,6 +40,8 @@ public class IngredientsController : MonoBehaviour
 
     private GameObject popupObject;
 
+    /// Audio Managaer
+    AudioManager audioManager;
 
     /// PARTICULAS FUMACA
     [Header("------- Particle References -------")]
@@ -51,6 +53,7 @@ public class IngredientsController : MonoBehaviour
     {
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -164,6 +167,8 @@ public class IngredientsController : MonoBehaviour
         {
             if (estadoAtualPanela == estadosPanela.disponivel || estadoAtualPanela == estadosPanela.vazia) 
             {
+                audioManager.PlaySFX(audioManager.splash);
+
                 if (GameObject.FindWithTag("segurando").name == "Banana(Clone)")
                 {
                     receita[0]++;

@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip background;
     public AudioClip shoot;
     public AudioClip pickup;
+    public AudioClip splash;
     //public AudioClip walkDirt;
 
     private void Awake()

@@ -142,10 +142,12 @@ public class PlayerArms : MonoBehaviour
                     if (Physics.Raycast(posTiro.transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000f))
                     {
                         //hit.collider.gameObject.GetComponent<Rigidbody>().AddRelativeForce(hit.point, ForceMode.Impulse);
-                        Instantiate(decal, new Vector3(hit.point.x, hit.point.y - 0.01f, hit.point.z - 0.01f), Quaternion.Euler(new Vector3(-90, 0, 0)));
+                        //Instantiate(decal, new Vector3(hit.point.x, hit.point.y - 0.01f, hit.point.z - 0.01f), Quaternion.Euler(new Vector3(-90, 0, 0)));
 
 
-                        ///decal = oPooler.inst.GetPoolObj();
+                        decal = oPooler.inst.GetPoolObj();
+
+
                         ///acertar um inimigo
                        
                        // ia_alvo = null;
@@ -155,7 +157,11 @@ public class PlayerArms : MonoBehaviour
                             return;
                         }
 
-                        decal.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z - 0.01f);
+                        decal.transform.position = new Vector3(hit.point.x  - 0.01f, hit.point.y + 0.01f, hit.point.z - 0.01f);
+                        Quaternion rot = Quaternion.LookRotation(-hit.normal);
+                        decal.transform.rotation = rot;
+                        //if (hit.collider.gameObject.CompareTag("dirt") )
+
                         decal.SetActive(true);
 
                         if (hit.collider.gameObject.CompareTag("Inimigo") || hit.collider.gameObject.CompareTag("Cobra"))
