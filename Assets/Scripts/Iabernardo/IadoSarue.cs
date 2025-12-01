@@ -35,7 +35,7 @@ public class IadoSarue : MonoBehaviour
         timer_2 = 0;
         agent = GetComponent<NavMeshAgent>();
         fuga = false;
-        Random.InitState(2);
+        //Random.InitState(2);
         //pegando todos os pontos de comida 
         pontos_de_comida = GameObject.FindGameObjectsWithTag("Geradores");
 

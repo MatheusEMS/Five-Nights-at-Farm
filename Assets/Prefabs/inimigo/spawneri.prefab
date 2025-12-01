@@ -52,6 +52,10 @@ MonoBehaviour:
   zPos: 0
   xPosV: 0
   zPosV: 0
+  xModN: -24
+  zModN: -24
+  xModP: 24
+  zModP: 24
   timer: 1
   spaw: 1
   surge: 0

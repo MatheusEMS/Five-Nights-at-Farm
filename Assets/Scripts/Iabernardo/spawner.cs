@@ -17,25 +17,32 @@ public class spawner : MonoBehaviour
     // posicao inicial do spawn
     [SerializeField] private int xPos;
     [SerializeField] private int zPos;
-    // posicos aleatorias para spawnar o inimigo
+    // coordenada aleatoria para spawnar o inimigo
     private int xPosF;
     private int zPosF;
+    //posição do spawner no mundo
     [SerializeField] public int xPosV;
     [SerializeField] public int zPosV;
+    //delimita variação de posição de spawn com relação a posição do proprio spawner
+    [SerializeField] public int xModN = -24;
+    [SerializeField] public int zModN = -24;
+    [SerializeField] public int xModP = 24;
+    [SerializeField] public int zModP = 24;
     public int timer = 2;
     [SerializeField] private bool spaw = true;
     [SerializeField] private bool surge = false;
     [SerializeField] public int EnemyCount;
-
+    [SerializeField] private bool ocupado = true;
+    //[SerializeField] private bool realocar = false;
     private bool checkState = false;
+    [SerializeField] private int realocn = 0;
 
 
-    
 
     private void Start()
     {
         //randomizar seed e inimigos dentro da list
-        Random.InitState(60);
+        Random.InitState(100);
         spawnlist.Add(Ia_sarue);
         spawnlist.Add(Ia_cobra);
         spawnlist.Add(Ia_onca);
@@ -50,20 +57,20 @@ public class spawner : MonoBehaviour
         checkState = GameController.instance.CheckEstado();
 
        
-       Debug.Log("estado jogo: "+ checkState);
+      // Debug.Log("estado jogo: "+ checkState);
             if ((spaw == true || surge == true) && checkState == true)
             {
                 StartCoroutine(SpawInimigo());
-
+           
             }
-        
-     //   xPos = Random.Range(-12, 26);
-      //  xPosF = xPosV + xPos;
-      //  zPos = Random.Range(-10, 12);
-      //  zPosF = zPosV + zPos;
-      //  ia = Random.Range(0, spawnlist.Count);
 
-        
+        //   xPos = Random.Range(-12, 26);
+        //  xPosF = xPosV + xPos;
+        //  zPos = Random.Range(-10, 12);
+        //  zPosF = zPosV + zPos;
+        //  ia = Random.Range(0, spawnlist.Count);
+
+
 
     }
 
@@ -71,29 +78,44 @@ public class spawner : MonoBehaviour
     {
 
         spaw = false;
-
+       
         yield return new WaitForSeconds(timer);
-        ///caso nao tenha spawnado um numero x de inimigos ainda spawne outro inimigo
+        spaw = true;
+
+
+  
+        Debug.Log("spawnando");
         if (EnemyCount < 20)
         {
-            spaw = true;
-            xPos = Random.Range(-24, 24);
+            xPos = Random.Range(xModN, xModP);
             xPosF = xPosV + xPos;
-            zPos = Random.Range(-24, 24);
+            zPos = Random.Range(zModN, zModP);
             zPosF = zPosV + zPos;
             ia = Random.Range(0, 4);
-           
 
-            EnemyCount++;
+            Vector3 positionToCheck = new Vector3(xPosF, -4, zPosF);
+            ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
 
+
+
+            if (ocupado == false) { 
             Debug.Log("Spawnou");
 
             Instantiate(spawnlist[ia], new Vector3(xPosF, -4, zPosF), Quaternion.identity);
+            spaw = true;
+            EnemyCount += 1;
 
-            
-           
+            }else if (EnemyCount < 20){
+                spaw = true;
+                realocn++;
+
+            }
+
+
+
         }
         
+       
 
     }
 
