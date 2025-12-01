@@ -192,6 +192,9 @@ public class PlayerArms : MonoBehaviour
                
                 }
             }
+        }else
+        {
+            animBracos.SetFloat("curSpeed", 0);
         }
     }
 

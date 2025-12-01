@@ -16,7 +16,7 @@ public class IngredientsController : MonoBehaviour
     private List<int> receita;
     private List<int> receitasProntas; //Receitas que podem ser feitas
     public static IngredientsController Instance;
-    [SerializeField] private List<GameObject> ReceitasParaSpawnar; //0 receita estragada , 1 receita1 , 2 receita2
+    [SerializeField] private List<GameObject> ReceitasParaSpawnar; //0 receita estragada , 1 receita1 , 2 receita2 , 3 receita3, 4 receita4
 
     private enum estadosPanela
     {
@@ -62,7 +62,8 @@ public class IngredientsController : MonoBehaviour
         receita = new List<int>()
         {
             0, //quant de Ingrediente 1 na panela
-            0 //quant de Ingrediente 2 na panela
+            0, //quant de Ingrediente 2 na panela
+            0  //quant de Ingrediente 3 na panela
         };
 
 
@@ -71,8 +72,16 @@ public class IngredientsController : MonoBehaviour
         {
             2, //RECEITA 1 - Ingrediente 1
             1, //RECEITA 1 - Ingrediente 2
-            3, //RECEITA 2 - Ingrediente 1
-            0  //RECEITA 2 - Ingrediente 2
+            0, //RECEITA 1 - Ingrediente 3
+            0, //RECEITA 2 - Ingrediente 1
+            3, //RECEITA 2 - Ingrediente 2
+            0, //RECEITA 2 - Ingrediente 3
+            1, //RECEITA 3 - Ingrediente 1
+            1, //RECEITA 3 - Ingrediente 2
+            1, //RECEITA 3 - Ingrediente 3
+            0, //RECEITA 2 - Ingrediente 1
+            1, //RECEITA 2 - Ingrediente 2
+            2, //RECEITA 2 - Ingrediente 3
         };
         countDown = tempoCozinhar;
 
@@ -109,6 +118,7 @@ public class IngredientsController : MonoBehaviour
                 //resetando a panela
                 receita[0] = 0;
                 receita[1] = 0;
+                receita[2] = 0;
             }
         }
     }
@@ -129,10 +139,11 @@ public class IngredientsController : MonoBehaviour
 
             CreateFumaca();
 
-            for(var i = 0;i < receitasProntas.Count - 1;i += 2)
+            for(var i = 0;i < receitasProntas.Count - 1;i += 3)
             {
                 qualReceita++;
-                if (receita[0] == receitasProntas[i] && receita[1] == receitasProntas[i+1])
+                //Verifica a qtd de ingredientes com a receita
+                if (receita[0] == receitasProntas[i] && receita[1] == receitasProntas[i+1] && receita[2] == receitasProntas[i + 2])
                 {
                     //tirar os ingredientes do popup
                     listaIngredPanela.Clear();
@@ -173,11 +184,15 @@ public class IngredientsController : MonoBehaviour
                 {
                     receita[0]++;
                     listaIngredPanela.Add("Banana");
-                }
-                else if (GameObject.FindWithTag("segurando").name == "Tomate(Clone)")
+                }//pois tomate fica trocando de nome sozinho
+                else if (GameObject.FindWithTag("segurando").name == "Tomate(Clone)" /*|| GameObject.FindWithTag("segurando").name == "tomate(Clone)"*/)
                 {
                     receita[1]++;
-                    listaIngredPanela.Add("Tomate");
+                    listaIngredPanela.Add("Tomato");
+                }else if (GameObject.FindWithTag("segurando").name == "Alho(Clone)")
+                {
+                    receita[2]++;
+                    listaIngredPanela.Add("Garlic");
                 }
 
                 Debug.Log("O QUE TEM NA PANELA: " + string.Join(", ", listaIngredPanela));

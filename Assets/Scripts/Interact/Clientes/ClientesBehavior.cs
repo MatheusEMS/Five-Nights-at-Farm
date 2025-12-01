@@ -45,6 +45,8 @@ public class ClientesBehavior : MonoBehaviour
 
     private int qualAparencia = 0;
 
+    private int numDeReceitas = 3;
+
 
     private void Awake()
     {
@@ -68,10 +70,14 @@ public class ClientesBehavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (GameController.instance.fase >= 1)
+        {
+            numDeReceitas = 5;
+        }
         Debug.Log("Tempo min: " + tempoMinEspera);
         Debug.Log("Tempo max: " + tempoMaxEspera);
         tempoEspera = Random.Range(tempoMinEspera, tempoMaxEspera); //tempo que ele vai esperar pela comida
-        ReceitaPedida = Random.Range(1, 3); //Qual receita ele vai pedir
+        ReceitaPedida = Random.Range(1, numDeReceitas); //Qual receita ele vai pedir
 
         PedirPosition = GameObject.FindWithTag("PedirCliente");
         SairPosition = GameObject.FindWithTag("SairCliente");
@@ -105,11 +111,17 @@ public class ClientesBehavior : MonoBehaviour
                         switch(ReceitaPedida)
                         {
                             case 1:
-                                popupObject.GetComponent<PopUps>().textValue = "2 Bananas\n1 Tomate\n";
+                                popupObject.GetComponent<PopUps>().textValue = "2 Bananas\n1 Tomato\n";
                                 break;
 
                             case 2:
-                                popupObject.GetComponent<PopUps>().textValue = "3 Bananas\n";
+                                popupObject.GetComponent<PopUps>().textValue = "3 Tomatos\n";
+                                break;
+                            case 3:
+                                popupObject.GetComponent<PopUps>().textValue = "1 Banana\n1 Tomato\n1 Garlic\n";
+                                break;
+                            case 4:
+                                popupObject.GetComponent<PopUps>().textValue = "2 Garlics\n1 Tomato\n";
                                 break;
                         }
 
@@ -172,7 +184,7 @@ public class ClientesBehavior : MonoBehaviour
         {
             Debug.Log(GameObject.FindWithTag("segurando"));
 
-            for (var i = 0; i < 3; i++) //i < o numero de receitas disponiveis
+            for (var i = 0; i < numDeReceitas; i++) //i < o numero de receitas disponiveis
             {
                 Debug.Log("Entregando Receita" + i);
                 if (GameObject.FindWithTag("segurando").name == "Receita" + i + "(Clone)")
