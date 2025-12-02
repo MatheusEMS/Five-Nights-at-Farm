@@ -185,7 +185,7 @@ public class IngredientsController : MonoBehaviour
                     receita[0]++;
                     listaIngredPanela.Add("Fish");
                 }//pois tomate fica trocando de nome sozinho
-                else if (GameObject.FindWithTag("segurando").name == "Tomate(Clone)" /*|| GameObject.FindWithTag("segurando").name == "tomate(Clone)"*/)
+                else if (GameObject.FindWithTag("segurando").name == "tomate(Clone)" /*|| GameObject.FindWithTag("segurando").name == "tomate(Clone)"*/)
                 {
                     receita[1]++;
                     listaIngredPanela.Add("Tomato");

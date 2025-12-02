@@ -17,6 +17,8 @@ TagManager:
   - PedirCliente
   - SairCliente
   - Particulas
+  - Geradores
+  - Cobra
   layers:
   - Default
   - TransparentFX
@@ -62,6 +64,9 @@ TagManager:
     locked: 0
   - name: ClienteRosto
     uniqueID: 2686292853
+    locked: 0
+  - name: Arma
+    uniqueID: 1373594839
     locked: 0
   m_RenderingLayers:
   - Default

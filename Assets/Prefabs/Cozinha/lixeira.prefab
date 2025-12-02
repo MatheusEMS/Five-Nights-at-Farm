@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3768077888498031585
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.948484
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.456
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.145269
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_Name
+      value: lixeira
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 127404897888270009}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8112525756851539748}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5999988865631370408}
+  m_SourcePrefab: {fileID: 100100000, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+--- !u!1 &4074507732695180976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f26930c99b86804aa0060ac3bb5394f, type: 3}
+  m_PrefabInstance: {fileID: 3768077888498031585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &127404897888270009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4074507732695180976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &8112525756851539748
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4074507732695180976}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4958702, y: 1.4958707, z: 3.2193065}
+  m_Center: {x: 0, y: 4.826758e-15, z: 0.339653}
+--- !u!114 &5999988865631370408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4074507732695180976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357036cc80f366640a88e011befcdf15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Recycle
+  onInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5999988865631370408}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: ReciclarIngrediente
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -52,6 +52,12 @@ public class Interactable : MonoBehaviour
         IngredientsController.Instance.PegouIngrediente(gameObject);
     }
 
+    public void ReciclarIngrediente()
+    {
+        audioManager.PlaySFX(audioManager.pickup);
+        IngredientsController.Instance.reciclar();
+    }
+
 
     public void AbrirTutorial()
     {
