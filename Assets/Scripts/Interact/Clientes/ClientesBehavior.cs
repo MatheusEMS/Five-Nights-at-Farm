@@ -111,17 +111,17 @@ public class ClientesBehavior : MonoBehaviour
                         switch(ReceitaPedida)
                         {
                             case 1:
-                                popupObject.GetComponent<PopUps>().textValue = "\n2 Fishs\n1 Tomato\n";
+                                popupObject.GetComponent<PopUps>().textValue = "Fish Soup\n2 Fishs\n1 Tomato\n";
                                 break;
 
                             case 2:
                                 popupObject.GetComponent<PopUps>().textValue = "Tomato Soup\n3 Tomatos\n";
                                 break;
                             case 3:
-                                popupObject.GetComponent<PopUps>().textValue = "1 Fish\n1 Tomato\n1 Garlic\n";
+                                popupObject.GetComponent<PopUps>().textValue = "Escabeche\n1 Fish\n1 Tomato\n1 Garlic\n";
                                 break;
                             case 4:
-                                popupObject.GetComponent<PopUps>().textValue = "\n2 Garlics\n1 Tomato\n";
+                                popupObject.GetComponent<PopUps>().textValue = "Garlic Porridge\n2 Garlic\n1 Tomato\n";
                                 break;
                         }
 
