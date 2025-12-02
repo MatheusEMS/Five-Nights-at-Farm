@@ -6,8 +6,8 @@ MonoImporter:
   defaultReferences:
   - gerador_1: {fileID: 1772723591887316370, guid: 2b48b1ec1a8abf04c8a99c865db5c942, type: 3}
   - gerador_2: {fileID: 8757607967863376914, guid: 768c5dfacff076846a19232ab39fe0a8, type: 3}
-  - IaTransform: {instanceID: 0}
-  - fugapoint: {instanceID: 0}
+  - IaTransform: {fileID: 7379557671451293285, guid: 35fe203bd75b6cb41a5df30deeb52f9b, type: 3}
+  - fugapoint: {fileID: 8457073388099586444, guid: 1abef6448a3773a408c287415dca342b, type: 3}
   - colliderdmg: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}

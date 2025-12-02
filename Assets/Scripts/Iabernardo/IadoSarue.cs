@@ -15,7 +15,7 @@ public class IadoSarue : MonoBehaviour
     [SerializeField] public float maxDistance = 5.0f;
     private GameObject cobra_alvo;
     public Transform IaTransform;
-    public Transform fugapoint;
+    private GameObject fugapoint;
     private bool fuga = false;
     NavMeshAgent agent;
     [SerializeField] private Collider colliderdmg;
@@ -38,7 +38,7 @@ public class IadoSarue : MonoBehaviour
         //Random.InitState(2);
         //pegando todos os pontos de comida 
         pontos_de_comida = GameObject.FindGameObjectsWithTag("Geradores");
-
+        fugapoint = GameObject.FindGameObjectWithTag("fugapoint");
         cobra_alvo = GameObject.FindGameObjectWithTag("Cobra");
 
 
@@ -95,10 +95,11 @@ public class IadoSarue : MonoBehaviour
         //se ja sabototou um gerador fuja
         if (timer < 0.0f && fuga == true)
         {
-            float sqDistance = (fugapoint.position - agent.destination).sqrMagnitude;
+          
+            float sqDistance = (fugapoint.gameObject.transform.position - agent.destination).sqrMagnitude;
             if (sqDistance > maxDistance)
             {
-                agent.destination = fugapoint.position;
+                agent.destination = fugapoint.gameObject.transform.position;
                 
             }
             

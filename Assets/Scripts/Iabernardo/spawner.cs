@@ -49,8 +49,8 @@ public class spawner : MonoBehaviour
         //level1
         spawnlist1.Add(Ia_sarue);
         //level2
-        spawnlist3.Add(Ia_sarue);
-        spawnlist3.Add(Ia_cobra);
+        spawnlist2.Add(Ia_sarue);
+        spawnlist2.Add(Ia_cobra);
         //level3+
         spawnlist3.Add(Ia_sarue);
         spawnlist3.Add(Ia_cobra);
@@ -93,7 +93,7 @@ public class spawner : MonoBehaviour
         spaw = true;
 
 
-        if (faseatual == 1)
+        if (faseatual == 0)
         {
             Debug.Log("spawnando");
             if (EnemyCount < 4)
@@ -104,7 +104,7 @@ public class spawner : MonoBehaviour
                 zPosF = zPosV + zPos;
                 //ia = Random.Range(0,2);
 
-                Vector3 positionToCheck = new Vector3(xPosF, 2, zPosF);
+                Vector3 positionToCheck = new Vector3(xPosF, 1, zPosF);
                 ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
 
 
@@ -113,7 +113,7 @@ public class spawner : MonoBehaviour
                 {
                     Debug.Log("Spawnou");
 
-                    Instantiate(Ia_sarue, new Vector3(xPosF, 2, zPosF), Quaternion.identity);
+                    Instantiate(Ia_sarue, new Vector3(xPosF, 1, zPosF), Quaternion.identity);
                     spaw = true;
                     EnemyCount += 1;
 
@@ -130,7 +130,7 @@ public class spawner : MonoBehaviour
             }
         }
 
-        if (faseatual == 2)
+        if (faseatual == 1)
         {
             Debug.Log("spawnando");
             if (EnemyCount < 6)
@@ -141,7 +141,7 @@ public class spawner : MonoBehaviour
                 zPosF = zPosV + zPos;
                 ia = Random.Range(0,3);
 
-                Vector3 positionToCheck = new Vector3(xPosF, 2, zPosF);
+                Vector3 positionToCheck = new Vector3(xPosF, 1, zPosF);
                 ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
 
 
@@ -150,7 +150,7 @@ public class spawner : MonoBehaviour
                 {
                     Debug.Log("Spawnou");
 
-                    Instantiate(spawnlist2[ia], new Vector3(xPosF, 2, zPosF), Quaternion.identity);
+                    Instantiate(spawnlist2[ia], new Vector3(xPosF, 1, zPosF), Quaternion.identity);
                     spaw = true;
                     EnemyCount += 1;
 
@@ -167,7 +167,7 @@ public class spawner : MonoBehaviour
             }
         }
 
-        if (faseatual >= 3)
+        if (faseatual >= 2)
         {
             Debug.Log("spawnando");
             if (EnemyCount < 10)
@@ -178,7 +178,7 @@ public class spawner : MonoBehaviour
                 zPosF = zPosV + zPos;
                 ia = Random.Range(0, 4);
 
-                Vector3 positionToCheck = new Vector3(xPosF, 2, zPosF);
+                Vector3 positionToCheck = new Vector3(xPosF, 1, zPosF);
                 ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
 
 
@@ -187,7 +187,7 @@ public class spawner : MonoBehaviour
                 {
                     Debug.Log("Spawnou");
 
-                    Instantiate(spawnlist3[ia], new Vector3(xPosF, 2, zPosF), Quaternion.identity);
+                    Instantiate(spawnlist3[ia], new Vector3(xPosF, 1, zPosF), Quaternion.identity);
                     spaw = true;
                     EnemyCount += 1;
 
