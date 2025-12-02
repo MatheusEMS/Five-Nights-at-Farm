@@ -11,9 +11,12 @@ public class spawner : MonoBehaviour
     [SerializeField] public GameObject Ia_sarue;
     [SerializeField] public GameObject Ia_cobra;
     [SerializeField] public GameObject Ia_onca;
-    public List<GameObject> spawnlist;
+    public List<GameObject> spawnlist3;
+    public List<GameObject> spawnlist2;
+    public List<GameObject> spawnlist1;
     private int ia;
-    
+  
+
     // posicao inicial do spawn
     [SerializeField] private int xPos;
     [SerializeField] private int zPos;
@@ -28,24 +31,30 @@ public class spawner : MonoBehaviour
     [SerializeField] public int zModN = -24;
     [SerializeField] public int xModP = 24;
     [SerializeField] public int zModP = 24;
-    public int timer = 2;
+    public int timer = 8;
     [SerializeField] private bool spaw = true;
     [SerializeField] private bool surge = false;
     [SerializeField] public int EnemyCount;
     [SerializeField] private bool ocupado = true;
     //[SerializeField] private bool realocar = false;
-    private bool checkState = false;
+    private bool checkState = false ;
     [SerializeField] private int realocn = 0;
-
+    [SerializeField] private int faseatual = 0;
 
 
     private void Start()
     {
         //randomizar seed e inimigos dentro da list
         Random.InitState(100);
-        spawnlist.Add(Ia_sarue);
-        spawnlist.Add(Ia_cobra);
-        spawnlist.Add(Ia_onca);
+        //level1
+        spawnlist1.Add(Ia_sarue);
+        //level2
+        spawnlist3.Add(Ia_sarue);
+        spawnlist3.Add(Ia_cobra);
+        //level3+
+        spawnlist3.Add(Ia_sarue);
+        spawnlist3.Add(Ia_cobra);
+        spawnlist3.Add(Ia_onca);
     }
 
    
@@ -72,51 +81,128 @@ public class spawner : MonoBehaviour
 
 
 
+         faseatual = GameController.instance.fase;
     }
-
+    
     IEnumerator SpawInimigo()
     {
 
         spaw = false;
-       
+
         yield return new WaitForSeconds(timer);
         spaw = true;
 
 
-  
-        Debug.Log("spawnando");
-        if (EnemyCount < 20)
+        if (faseatual == 1)
         {
-            xPos = Random.Range(xModN, xModP);
-            xPosF = xPosV + xPos;
-            zPos = Random.Range(zModN, zModP);
-            zPosF = zPosV + zPos;
-            ia = Random.Range(0, 4);
+            Debug.Log("spawnando");
+            if (EnemyCount < 4)
+            {
+                xPos = Random.Range(xModN, xModP);
+                xPosF = xPosV + xPos;
+                zPos = Random.Range(zModN, zModP);
+                zPosF = zPosV + zPos;
+                //ia = Random.Range(0,2);
 
-            Vector3 positionToCheck = new Vector3(xPosF, -4, zPosF);
-            ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
+                Vector3 positionToCheck = new Vector3(xPosF, 2, zPosF);
+                ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
 
 
 
-            if (ocupado == false) { 
-            Debug.Log("Spawnou");
+                if (ocupado == false)
+                {
+                    Debug.Log("Spawnou");
 
-            Instantiate(spawnlist[ia], new Vector3(xPosF, -4, zPosF), Quaternion.identity);
-            spaw = true;
-            EnemyCount += 1;
+                    Instantiate(Ia_sarue, new Vector3(xPosF, 2, zPosF), Quaternion.identity);
+                    spaw = true;
+                    EnemyCount += 1;
 
-            }else if (EnemyCount < 20){
-                spaw = true;
-                realocn++;
+                }
+                else if (EnemyCount < 4)
+                {
+                    spaw = true;
+                    realocn++;
+
+                }
+
+
 
             }
-
-
-
         }
-        
-       
 
+        if (faseatual == 2)
+        {
+            Debug.Log("spawnando");
+            if (EnemyCount < 6)
+            {
+                xPos = Random.Range(xModN, xModP);
+                xPosF = xPosV + xPos;
+                zPos = Random.Range(zModN, zModP);
+                zPosF = zPosV + zPos;
+                ia = Random.Range(0,3);
+
+                Vector3 positionToCheck = new Vector3(xPosF, 2, zPosF);
+                ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
+
+
+
+                if (ocupado == false)
+                {
+                    Debug.Log("Spawnou");
+
+                    Instantiate(spawnlist2[ia], new Vector3(xPosF, 2, zPosF), Quaternion.identity);
+                    spaw = true;
+                    EnemyCount += 1;
+
+                }
+                else if (EnemyCount < 6)
+                {
+                    spaw = true;
+                    realocn++;
+
+                }
+
+
+
+            }
+        }
+
+        if (faseatual >= 3)
+        {
+            Debug.Log("spawnando");
+            if (EnemyCount < 10)
+            {
+                xPos = Random.Range(xModN, xModP);
+                xPosF = xPosV + xPos;
+                zPos = Random.Range(zModN, zModP);
+                zPosF = zPosV + zPos;
+                ia = Random.Range(0, 4);
+
+                Vector3 positionToCheck = new Vector3(xPosF, 2, zPosF);
+                ocupado = Physics.CheckSphere(positionToCheck, 0.5f);
+
+
+
+                if (ocupado == false)
+                {
+                    Debug.Log("Spawnou");
+
+                    Instantiate(spawnlist3[ia], new Vector3(xPosF, 2, zPosF), Quaternion.identity);
+                    spaw = true;
+                    EnemyCount += 1;
+
+                }
+                else if (EnemyCount < 10)
+                {
+                    spaw = true;
+                    realocn++;
+
+                }
+
+
+
+            }
+        }
     }
 
 }

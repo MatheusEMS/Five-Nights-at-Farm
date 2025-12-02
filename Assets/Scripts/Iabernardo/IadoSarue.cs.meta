@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 6109e581902bfd844a41ac9778b7ee4c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gerador_1: {fileID: 1772723591887316370, guid: 2b48b1ec1a8abf04c8a99c865db5c942, type: 3}
+  - gerador_2: {fileID: 8757607967863376914, guid: 768c5dfacff076846a19232ab39fe0a8, type: 3}
+  - IaTransform: {instanceID: 0}
+  - fugapoint: {instanceID: 0}
+  - colliderdmg: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
