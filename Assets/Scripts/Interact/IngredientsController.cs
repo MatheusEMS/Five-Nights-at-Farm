@@ -180,10 +180,10 @@ public class IngredientsController : MonoBehaviour
             {
                 audioManager.PlaySFX(audioManager.splash);
 
-                if (GameObject.FindWithTag("segurando").name == "Banana(Clone)")
+                if (GameObject.FindWithTag("segurando").name == "Peixe(Clone)")
                 {
                     receita[0]++;
-                    listaIngredPanela.Add("Banana");
+                    listaIngredPanela.Add("Fish");
                 }//pois tomate fica trocando de nome sozinho
                 else if (GameObject.FindWithTag("segurando").name == "Tomate(Clone)" /*|| GameObject.FindWithTag("segurando").name == "tomate(Clone)"*/)
                 {
