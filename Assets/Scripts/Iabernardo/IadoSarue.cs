@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class IadoSarue : MonoBehaviour
 {
 
-   
+    private bool checkState = false;
     public GameObject[] pontos_de_comida;
     [SerializeField] public Transform gerador_1;
     [SerializeField] public Transform gerador_2;
@@ -48,72 +48,84 @@ public class IadoSarue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        checkState = GameController.instance.CheckEstado();
 
-        cobra_alvo = GameObject.FindGameObjectWithTag("Cobra");
-        timer_2++;
-        //simplificar em 2 alvos de geradores de ingredientes
-        if (p_a < 50)
+        if (GameController.instance.pausa == true)
+        {
+            agent.destination = IaTransform.position;
+
+        }
+
+        if (GameController.instance.pausa == false && checkState == true)
         {
 
-            p_aV = 0;
+            cobra_alvo = GameObject.FindGameObjectWithTag("Cobra");
+            timer_2++;
+            //simplificar em 2 alvos de geradores de ingredientes
+            if (p_a < 50)
+            {
 
-        }else if(p_a > 50)
-         {
+                p_aV = 0;
 
-           p_aV = 1;
+            }
+            else if (p_a > 50)
+            {
+
+                p_aV = 1;
 
 
-         }
-        timer -= Time.deltaTime;
-        ////escolhendo um numero aleatorio para escolher o gerador alvo
-        if (escolher)
-        {
-            p_a = Random.Range(0, 100);
-           
-            
-            if (timer_2 >= 150)
+            }
+            timer -= Time.deltaTime;
+            ////escolhendo um numero aleatorio para escolher o gerador alvo
+            if (escolher)
             {
                 p_a = Random.Range(0, 100);
-                escolher = false;
-                timer_2 = 0 ;
-            }
 
-        }
-        //se nã oestiver fugindo va até o gerador
-        if (timer < 0.0f && fuga == false && cobra_alvo == null)
-        {
-            float sqDistance = (pontos_de_comida[p_aV].transform.position - agent.destination).sqrMagnitude;
-            if (sqDistance > maxDistance)
+
+                if (timer_2 >= 150)
+                {
+                    p_a = Random.Range(0, 100);
+                    escolher = false;
+                    timer_2 = 0;
+                }
+
+            }
+            //se nã oestiver fugindo va até o gerador
+            if (timer < 0.0f && fuga == false && cobra_alvo == null && GameController.instance.pausa == false)
             {
-                agent.destination = pontos_de_comida[p_aV].transform.position;
+                float sqDistance = (pontos_de_comida[p_aV].transform.position - agent.destination).sqrMagnitude;
+                if (sqDistance > maxDistance)
+                {
+                    agent.destination = pontos_de_comida[p_aV].transform.position;
+                }
+                timer = maxTime;
             }
-            timer = maxTime;
-        }
 
-        //timer -= Time.deltaTime;
+            //timer -= Time.deltaTime;
 
-        //se ja sabototou um gerador fuja
-        if (timer < 0.0f && fuga == true)
-        {
-          
-            float sqDistance = (fugapoint.gameObject.transform.position - agent.destination).sqrMagnitude;
-            if (sqDistance > maxDistance)
+            //se ja sabototou um gerador fuja
+            if (timer < 0.0f && fuga == true && GameController.instance.pausa == false)
             {
-                agent.destination = fugapoint.gameObject.transform.position;
-                
-            }
-            
-        }
-        if (cobra_alvo && fuga == false)
-        {
 
-            float sqDistance = (cobra_alvo.transform.position - agent.destination).sqrMagnitude;
-            if (sqDistance > maxDistance)
+                float sqDistance = (fugapoint.gameObject.transform.position - agent.destination).sqrMagnitude;
+                if (sqDistance > maxDistance)
+                {
+                    agent.destination = fugapoint.gameObject.transform.position;
+
+                }
+
+            }
+            if (cobra_alvo && fuga == false && GameController.instance.pausa == false)
             {
-                agent.destination = cobra_alvo.transform.position;
-            }
-            timer = maxTime;
 
+                float sqDistance = (cobra_alvo.transform.position - agent.destination).sqrMagnitude;
+                if (sqDistance > maxDistance)
+                {
+                    agent.destination = cobra_alvo.transform.position;
+                }
+                timer = maxTime;
+
+            }
         }
 
     }

@@ -67,7 +67,7 @@ public class spawner : MonoBehaviour
 
        
       // Debug.Log("estado jogo: "+ checkState);
-            if ((spaw == true || surge == true) && checkState == true)
+            if ((spaw == true || surge == true) && checkState == true && GameController.instance.pausa == false)
             {
                 StartCoroutine(SpawInimigo());
            
