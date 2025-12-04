@@ -36,12 +36,15 @@ public class ClientesBehavior : MonoBehaviour
 
     private GameObject  PedirPosition, SairPosition;
 
-
     [Header("------- Cliente caracteristicas References -------")]
     [SerializeField] private List<GameObject> Olhos; 
     [SerializeField] private List<GameObject> Nariz;
     [SerializeField] private List<GameObject> Boca;
     [SerializeField] private List<GameObject> Cabelo;
+
+    [Header("------- Cliente emojis -------")]
+    [SerializeField] private GameObject feliz;
+    [SerializeField] private GameObject bravo;
 
     private int qualAparencia = 0;
 
@@ -147,6 +150,7 @@ public class ClientesBehavior : MonoBehaviour
                     //colocar popup dele feliz
 
                     Destroy(popupObject);
+                    feliz.SetActive(true);
                     if (transform.position == SairPosition.transform.position)
                     {
                         Destroy(gameObject);
@@ -161,6 +165,7 @@ public class ClientesBehavior : MonoBehaviour
                     //colocar popup dele bravo
 
                     Destroy(popupObject);
+                    bravo.SetActive(true);
                     if (transform.position == SairPosition.transform.position)
                     {
                         Destroy(gameObject);

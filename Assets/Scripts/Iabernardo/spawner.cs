@@ -23,10 +23,10 @@ public class spawner : MonoBehaviour
     // coordenada aleatoria para spawnar o inimigo
     private int xPosF;
     private int zPosF;
-    //posição do spawner no mundo
+    //posiï¿½ï¿½o do spawner no mundo
     [SerializeField] public int xPosV;
     [SerializeField] public int zPosV;
-    //delimita variação de posição de spawn com relação a posição do proprio spawner
+    //delimita variaï¿½ï¿½o de posiï¿½ï¿½o de spawn com relaï¿½ï¿½o a posiï¿½ï¿½o do proprio spawner
     [SerializeField] public int xModN = -24;
     [SerializeField] public int zModN = -24;
     [SerializeField] public int xModP = 24;
@@ -45,7 +45,7 @@ public class spawner : MonoBehaviour
     private void Start()
     {
         //randomizar seed e inimigos dentro da list
-        Random.InitState(100);
+        //Random.InitState(100);
         //level1
         spawnlist1.Add(Ia_sarue);
         //level2
