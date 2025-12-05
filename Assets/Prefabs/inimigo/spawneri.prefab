@@ -50,7 +50,7 @@ MonoBehaviour:
   spawnlist3: []
   spawnlist2: []
   spawnlist1: []
-  quantInimigos: 4
+  quantInimigos: 7
   xPos: 0
   zPos: 0
   xPosV: 0
