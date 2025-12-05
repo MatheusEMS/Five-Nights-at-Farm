@@ -47,7 +47,10 @@ MonoBehaviour:
   Ia_sarue: {fileID: 2868264422562169187, guid: 35fe203bd75b6cb41a5df30deeb52f9b, type: 3}
   Ia_cobra: {fileID: 6828602225877345382, guid: 4462abd001da9124fbdfccd1759b7cde, type: 3}
   Ia_onca: {fileID: 8525384387227753819, guid: d933d771379001444ad9a231dd1eb2d6, type: 3}
-  spawnlist: []
+  spawnlist3: []
+  spawnlist2: []
+  spawnlist1: []
+  quantInimigos: 4
   xPos: 0
   zPos: 0
   xPosV: 0
@@ -56,7 +59,10 @@ MonoBehaviour:
   zModN: -24
   xModP: 24
   zModP: 24
-  timer: 1
+  timer: 20
   spaw: 1
   surge: 0
   EnemyCount: 0
+  ocupado: 1
+  realocn: 0
+  faseatual: 0

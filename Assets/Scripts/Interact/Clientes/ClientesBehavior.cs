@@ -233,10 +233,10 @@ public class ClientesBehavior : MonoBehaviour
     }
 
     //Debug na tela
-    void OnGUI()
+    /*void OnGUI()
     {
         GUILayout.BeginArea(new Rect(Screen.width - 500, 0, 400, Screen.height));
         GUILayout.Label("\n" + string.Join("\n", estadoCliente,"receita pedida " + ReceitaPedida,"tempo espera " + tempoEspera));
         GUILayout.EndArea();
-    }
+    }*/
 }

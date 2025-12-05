@@ -124,12 +124,12 @@ public class IngredientsController : MonoBehaviour
     }
 
     //Debug na tela
-    void OnGUI()
+    /*void OnGUI()
     {
         GUILayout.BeginArea(new Rect(Screen.width - 300, 0, 400, Screen.height));
         GUILayout.Label("\n" + string.Join("\n", estadoAtualPanela , countDown, "qual receita " +qualReceita,receita[0].ToString(),receita[1].ToString()));
         GUILayout.EndArea();
-    }
+    }*/
 
     public void LigarPanela()
     {

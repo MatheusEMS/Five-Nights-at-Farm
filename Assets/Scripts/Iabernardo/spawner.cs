@@ -15,6 +15,8 @@ public class spawner : MonoBehaviour
     public List<GameObject> spawnlist2;
     public List<GameObject> spawnlist1;
     private int ia;
+
+    [SerializeField] private int quantInimigos = 4;
   
 
     // posicao inicial do spawn
@@ -69,6 +71,7 @@ public class spawner : MonoBehaviour
       // Debug.Log("estado jogo: "+ checkState);
             if ((spaw == true || surge == true) && checkState == true && GameController.instance.pausa == false)
             {
+                Debug.Log("spawnou ini");
                 StartCoroutine(SpawInimigo());
            
             }
@@ -96,7 +99,7 @@ public class spawner : MonoBehaviour
         if (faseatual == 0)
         {
             Debug.Log("spawnando");
-            if (EnemyCount < 4)
+            if (EnemyCount < quantInimigos)
             {
                 xPos = Random.Range(xModN, xModP);
                 xPosF = xPosV + xPos;
@@ -133,7 +136,7 @@ public class spawner : MonoBehaviour
         if (faseatual == 1)
         {
             Debug.Log("spawnando");
-            if (EnemyCount < 6)
+            if (EnemyCount < quantInimigos + 2)
             {
                 xPos = Random.Range(xModN, xModP);
                 xPosF = xPosV + xPos;
@@ -170,7 +173,7 @@ public class spawner : MonoBehaviour
         if (faseatual >= 2)
         {
             Debug.Log("spawnando");
-            if (EnemyCount < 10)
+            if (EnemyCount < quantInimigos + 6)
             {
                 xPos = Random.Range(xModN, xModP);
                 xPosF = xPosV + xPos;

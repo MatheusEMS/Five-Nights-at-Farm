@@ -233,7 +233,7 @@ public class GameController : MonoBehaviour
         }
     }
     
-     void OnGUI()
+     /*void OnGUI()
     {
         GUILayout.BeginArea(new Rect(Screen.width - 700, 0, 400, Screen.height));
         GUILayout.Label("\n" + string.Join("\n", "Clientes satisfeitos " + clientesAtendidosSatisfeitos,
@@ -242,7 +242,7 @@ public class GameController : MonoBehaviour
         "Estado: " + estadoJogo,
         "Porcentagem: " + porcentagemRank));
         GUILayout.EndArea();
-    }
+    }*/
 
     private void pausaParticulas()
     {
@@ -295,7 +295,9 @@ public class GameController : MonoBehaviour
         timer = tempoTelaPreta;
 
         StartCoroutine(ResetVariables());
-        if (fase == 5) // ultima fase
+
+        //trocar dps
+        if (fase == 2) // ultima fase
         {
             SceneController.instance.LoadScene("Final");
         }
@@ -318,7 +320,7 @@ public class GameController : MonoBehaviour
     {
         // Espera o tempo especificado
         yield return new WaitForSeconds(2f);
-        if (fase > 4)
+        if (fase > 1)
         {
             estadoJogo = StateGame.Intro;
         }else
