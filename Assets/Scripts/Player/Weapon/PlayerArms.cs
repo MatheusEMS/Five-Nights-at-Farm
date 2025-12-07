@@ -239,6 +239,11 @@ public class PlayerArms : MonoBehaviour
         //Debug.Log("teste");
 
     }
+
+    void OnDisable()
+    {
+        CanFire = true;
+    }
     IEnumerator Recarregar()
     {
         animBracos.CrossFade("PistolReload", 0.02f, 0, 0);
