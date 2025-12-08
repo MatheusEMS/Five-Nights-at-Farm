@@ -44,10 +44,15 @@ public class PlayerArms : MonoBehaviour
 
     private bool recarrengando = false;
 
+    private float posInicial;
+
     //pega o audioManager
     private void Awake()
     {
+        animBracos.CrossFade("PistolIdle", 0.02f, 0, 0);
         audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+        posInicial = transform.position.y;
+      
     }
 
     public void Eject(GameObject prefab)
@@ -243,9 +248,22 @@ public class PlayerArms : MonoBehaviour
     void OnDisable()
     {
         CanFire = true;
+        if (GlobalAmmo.municaopistolacount <= 0)
+        {
+            recarrengando = false;
+        }
     }
+    private void OnEnable()
+    {
+        animBracos.CrossFade("PistolIdle", 0.02f, 0, 0);
+        
+    }
+
+
     IEnumerator Recarregar()
     {
+       
+
         animBracos.CrossFade("PistolReload", 0.02f, 0, 0);
         yield return new WaitForSeconds(2);
 

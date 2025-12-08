@@ -96,7 +96,7 @@ public class spawner : MonoBehaviour
         spaw = true;
 
 
-        if (faseatual == 0)
+        if (faseatual == 0 && checkState == true && GameController.instance.pausa == false)
         {
             Debug.Log("spawnando");
             if (EnemyCount < quantInimigos)
@@ -133,7 +133,7 @@ public class spawner : MonoBehaviour
             }
         }
 
-        if (faseatual == 1)
+        if (faseatual == 1 && checkState == true && GameController.instance.pausa == false)
         {
             Debug.Log("spawnando");
             if (EnemyCount < quantInimigos + 2)
@@ -170,7 +170,7 @@ public class spawner : MonoBehaviour
             }
         }
 
-        if (faseatual >= 2)
+        if (faseatual >= 2 && checkState == true && GameController.instance.pausa == false)
         {
             Debug.Log("spawnando");
             if (EnemyCount < quantInimigos + 6)
