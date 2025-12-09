@@ -465,6 +465,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7952803084224270214, guid: 1237982125c281e46abe3e9807528ba4, type: 3}
   m_PrefabInstance: {fileID: 42980884}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &51235920
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.16454
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7047194
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.644223
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953756169313798146, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548038153264210364, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986301385547079188, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 8300000, guid: f4eaec826679472488ff378d31556136, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44950c467bec97e44b3b7978e1825a01, type: 3}
 --- !u!1001 &79788767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2329,10 +2390,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\rProgrammer\n2D Artist\nNarrative & Texture Artist\nModeling\nGame Designer
-    & Programmer\nSomething\n"
+    & Programmer\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1667486e99fa4574f83c1d3c107f8b92, type: 2}
-  m_sharedMaterial: {fileID: -8844446500928669384, guid: 1667486e99fa4574f83c1d3c107f8b92, type: 2}
+  m_sharedMaterial: {fileID: -6737738282403592333, guid: 1667486e99fa4574f83c1d3c107f8b92, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5131,7 +5192,7 @@ MonoBehaviour:
   m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47a2351956e9766458ecc9fffad1a3c2, type: 2}
-  m_sharedMaterial: {fileID: 8663106782634904830, guid: 47a2351956e9766458ecc9fffad1a3c2, type: 2}
+  m_sharedMaterial: {fileID: 5683699158734946613, guid: 47a2351956e9766458ecc9fffad1a3c2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6929,6 +6990,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1349104320}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1132665429
 GameObject:
   m_ObjectHideFlags: 0
@@ -7226,6 +7303,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1349104320}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1160890116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7364,7 +7457,7 @@ MonoBehaviour:
   m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47a2351956e9766458ecc9fffad1a3c2, type: 2}
-  m_sharedMaterial: {fileID: 8663106782634904830, guid: 47a2351956e9766458ecc9fffad1a3c2, type: 2}
+  m_sharedMaterial: {fileID: 5683699158734946613, guid: 47a2351956e9766458ecc9fffad1a3c2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8504,7 +8597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1349104319
 Transform:
   m_ObjectHideFlags: 0
@@ -8530,9 +8623,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 9de4dc9e1304f7a40b8260914c3000b3, type: 3}
+  m_Resource: {fileID: 8300000, guid: 9de4dc9e1304f7a40b8260914c3000b3, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -9047,6 +9140,22 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2144687760}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1349104320}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
           m_Mode: 1
@@ -21546,10 +21655,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Bernardo dos Anjos\r\nBruna Andrade \r\nGuilherme Freitas\r\nLucas Severo
-    \r\nMatheus Ericson\r\nTyago Gioda \r\n"
+    \r\nMatheus Ericson\r\n\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1667486e99fa4574f83c1d3c107f8b92, type: 2}
-  m_sharedMaterial: {fileID: -8844446500928669384, guid: 1667486e99fa4574f83c1d3c107f8b92, type: 2}
+  m_sharedMaterial: {fileID: -6737738282403592333, guid: 1667486e99fa4574f83c1d3c107f8b92, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -22517,6 +22626,22 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2144687760}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1349104320}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
           m_Mode: 1
@@ -23622,3 +23747,4 @@ SceneRoots:
   - {fileID: 576788940}
   - {fileID: 924862804}
   - {fileID: 543337687}
+  - {fileID: 51235920}

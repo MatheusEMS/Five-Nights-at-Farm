@@ -311,3 +311,6 @@ MonoBehaviour:
   pickup: {fileID: 8300000, guid: 2e68f6b6e4b3e7247adc2703a5696b7f, type: 3}
   splash: {fileID: 8300000, guid: cc99f5813f91d7549ab2b7c2845a2b60, type: 3}
   efeitoCobra: {fileID: 8300000, guid: 8b8b9cb3a20ba9b4d8090531b7561e14, type: 3}
+  victory: {fileID: 8300000, guid: b3dabe7a273f57241b0870d9136af2ec, type: 3}
+  defeat: {fileID: 8300000, guid: 36caff8fe84c0f24a92d765385eb520d, type: 3}
+  beep: {fileID: 8300000, guid: 8a62b3fb8190afe41b70c3a6912f3d80, type: 3}

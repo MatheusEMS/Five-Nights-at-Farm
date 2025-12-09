@@ -98,12 +98,15 @@ public class IngredientsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
         if (GameController.instance.pausa == false && estadoAtualPanela == estadosPanela.cozinhando)
         {
             countDown -= Time.deltaTime;
             popupObject.GetComponent<PopUps>().timer = countDown;
             if (countDown <= 0)
             {
+                audioManager.PlaySFX(audioManager.beep);
+
                 //dar nome e ve se existe para não spawnar varias receitas
                 Instantiate(ReceitasParaSpawnar[qualReceita], new Vector3(spawnReceita.transform.position.x,
                 spawnReceita.transform.position.y,

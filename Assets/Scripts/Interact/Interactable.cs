@@ -28,6 +28,13 @@ public class Interactable : MonoBehaviour
         DisableOutline();
     }
 
+    void Update()
+    {
+
+       audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+
+    }
+
     public void Interact()
     {
         audioManager.PlaySFX(audioManager.pickup);
@@ -60,7 +67,11 @@ public class Interactable : MonoBehaviour
 
 
     public void AbrirTutorial()
-    {
-        HudController.instance.AbrirTutorial();
+    { 
+        if (GameController.instance.CheckEstadoResultado() == false)
+        {
+            audioManager.PlaySFX(audioManager.pickup);
+            HudController.instance.AbrirTutorial();
+        }
     }
 }

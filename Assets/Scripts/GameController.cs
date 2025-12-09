@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
+
 
 public class GameController : MonoBehaviour
 {
@@ -38,6 +38,12 @@ public class GameController : MonoBehaviour
     private float timerTutorial = 1;
 
     private float porcentagemRank;
+
+    private bool checkMusic = false;
+    private bool Musictheme = false;
+
+    //Audios
+    AudioManager audioManager;
 
     private enum StateGame  
     {
@@ -76,6 +82,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
         switch (estadoJogo)
         {
             case StateGame.Intro:
@@ -87,7 +94,6 @@ public class GameController : MonoBehaviour
 
                 break;
             case StateGame.Prefase:
-
                 //tira cursor e trava o mouse
                 Hud.SetActive(false);
                 TelaResultados.SetActive(false);
@@ -141,9 +147,11 @@ public class GameController : MonoBehaviour
 
                 if (clientesAtendidosSatisfeitos + clientesAtendidosInsatisfeitos == quantClientes[fase])
                 {
+                    checkMusic = false;
                     //checar qts clientes ficaram insastifeitos
                     if (clientesAtendidosInsatisfeitos > quantasFalhas[fase]) //ve se deixa >= ou >
                     {
+                        Musictheme = false;
                         Debug.Log("Não passou de fase");
 
                         //Resultadotext.text = "Não passou de fase";
@@ -152,6 +160,7 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
+                        Musictheme = true;
                         Debug.Log("Passou de fase");
 
                         //Resultadotext.text = "Passou de fase";
@@ -172,7 +181,24 @@ public class GameController : MonoBehaviour
                 if (!GameObject.Find("Cliente(Clone)")) //espera o cliente ir embora
                 {
                     //Parar musica
-                    AudioManager.instance.StopMusic();
+                    audioManager.StopMusic();
+
+                    //tocar musica derrota ou vitoria
+                    if (checkMusic == false)
+                    {
+                        if (Musictheme == false)
+                        {
+                            audioManager.PlaySFX(audioManager.defeat);
+                            //AudioManager.instance.PlaySFX(AudioManager.instance.defeat);
+                            checkMusic = true;
+                        }
+                        else
+                        {
+                            audioManager.PlaySFX(audioManager.victory);
+                            //AudioManager.instance.PlaySFX(AudioManager.instance.victory);
+                            checkMusic = true;
+                        }
+                    }
 
                     Hud.SetActive(false);
                     //Cursor.visible = true;
@@ -372,6 +398,21 @@ public class GameController : MonoBehaviour
             check = false;
         }
         
+        return check;
+    }
+
+    public bool CheckEstadoResultado()
+    {
+        bool check = false;
+        if (estadoJogo == StateGame.Resultados)
+        {
+            check = true;
+        }
+        else
+        {
+            check = false;
+        }
+
         return check;
     }
 }

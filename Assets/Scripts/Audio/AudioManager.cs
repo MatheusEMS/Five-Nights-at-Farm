@@ -16,6 +16,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip pickup;
     public AudioClip splash;
     public AudioClip efeitoCobra;
+    public AudioClip victory;
+    public AudioClip defeat;
+    public AudioClip beep;
     //public AudioClip walkDirt;
 
     private void Awake()
@@ -31,10 +34,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
         //se quiser que a musica comeca ao iniciar a cena
         musicSource.clip = background;
+        musicSource.Play();
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        musicSource.clip = clip;
         musicSource.Play();
     }
 
