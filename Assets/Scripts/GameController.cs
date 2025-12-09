@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -155,7 +154,7 @@ public class GameController : MonoBehaviour
                         Debug.Log("Não passou de fase");
 
                         //Resultadotext.text = "Não passou de fase";
-                        Resultadotext.text = "Tentar de Novo"+ "\n\n" + clientesAtendidosSatisfeitos + "/" + quantClientes[fase] + " Sairam Satisfeitos";
+                        Resultadotext.text = "Try Again"+ "\n\n" + clientesAtendidosSatisfeitos + "/" + quantClientes[fase] + " They left satisfied.";
                         estadoJogo = StateGame.Resultados;
                     }
                     else
@@ -164,7 +163,7 @@ public class GameController : MonoBehaviour
                         Debug.Log("Passou de fase");
 
                         //Resultadotext.text = "Passou de fase";
-                        Resultadotext.text = "Continuar" + "\n\n" + clientesAtendidosSatisfeitos + "/" + quantClientes[fase] + " Sairam Satisfeitos";
+                        Resultadotext.text = "Continue" + "\n\n" + clientesAtendidosSatisfeitos + "/" + quantClientes[fase] + " They left satisfied.";
 
                         //passar de fase
                         fase++;
@@ -227,6 +226,9 @@ public class GameController : MonoBehaviour
                         timer = tempoTelaPreta;
                         estadoJogo = StateGame.Prefase;
                     }*/
+                }else
+                {
+                    
                 }
 
                 break;
@@ -266,7 +268,8 @@ public class GameController : MonoBehaviour
         "Clientes Insatisfeitos " + clientesAtendidosInsatisfeitos,
         "fase: " + fase,
         "Estado: " + estadoJogo,
-        "Porcentagem: " + porcentagemRank));
+        "Porcentagem: " + porcentagemRank,
+        "Clientes" + GameObject.Find("Cliente(Clone)")));
         GUILayout.EndArea();
     }*/
 

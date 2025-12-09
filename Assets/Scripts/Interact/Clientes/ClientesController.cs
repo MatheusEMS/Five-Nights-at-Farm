@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ClientesController : MonoBehaviour
@@ -7,6 +8,8 @@ public class ClientesController : MonoBehaviour
 
 
     private GameObject novoCliente;
+
+    private bool checkSpawn = false;
 
     private ClientesBehavior clientesBehavior;
 
@@ -31,18 +34,32 @@ public class ClientesController : MonoBehaviour
         {
             if (GameObject.Find("Cliente(Clone)"))
             {
+                checkSpawn = false;
                 //Debug.Log("achou cliente");
             }
             else
             {
-                novoCliente = Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
-
-                clientesBehavior = novoCliente.GetComponent<ClientesBehavior>();
-
-                clientesBehavior.tempoMinEspera = 35f - 3 * GameController.instance.fase;
-                clientesBehavior.tempoMaxEspera = 50f - 4 * GameController.instance.fase;
-                //Debug.Log("n�o tem cliente");
+                if (checkSpawn == false)
+                {
+                    StartCoroutine(SpawnCliente());
+                }
             }
         }
+    }
+
+    IEnumerator SpawnCliente()
+    {
+        checkSpawn = true;
+        yield return new WaitForSeconds(0.5f);
+        if (GameController.instance.pausa == false)
+        {
+            novoCliente = Instantiate(Clientes, SpawnPointClientes.transform.position, Quaternion.identity);
+
+            clientesBehavior = novoCliente.GetComponent<ClientesBehavior>();
+
+            clientesBehavior.tempoMinEspera = 35f - 3 * GameController.instance.fase;
+            clientesBehavior.tempoMaxEspera = 50f - 4 * GameController.instance.fase;
+                //Debug.Log("n�o tem cliente");   
+        }     
     }
 }

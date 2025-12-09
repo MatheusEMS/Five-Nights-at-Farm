@@ -44,15 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693737f8d9a7bfb4a8efea57b1bd58f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantClientes: 0100000007000000050000000500000005000000
-  quantasFalhas: 0000000004000000000000000000000000000000
+  quantClientes: 0100000005000000060000000700000007000000
+  quantasFalhas: 0300000003000000020000000200000002000000
   clientesAtendidosSatisfeitos: 0
   clientesAtendidosInsatisfeitos: 0
+  fase: 0
   tempoTelaPreta: 2
   Resultadotext: {fileID: 0}
   TelaResultados: {fileID: 0}
   diaTXT: {fileID: 0}
   TelaPretaPrefase: {fileID: 0}
   Hud: {fileID: 0}
-  continuarTentarTXT: {fileID: 0}
+  OrankUI: {fileID: 0}
   pausa: 1
